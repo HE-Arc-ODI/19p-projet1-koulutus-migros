@@ -28,4 +28,44 @@ public class Program implements Serializable {
   public void setId(Long id) {
     this.id = id;
   }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getRichDescription() {
+    return richDescription;
+  }
+
+  public void setRichDescription(String richDescription) {
+    this.richDescription = richDescription;
+  }
+
+  public String getField() {
+    return field;
+  }
+
+  public void setField(String field) {
+    this.field = field;
+  }
+
+  public int getPrice() {
+    return price;
+  }
+
+  public void setPrice(int price) {
+    this.price = price;
+  }
+
+  public List<Course> getCourses() {
+    return courses;
+  }
+
+  public void setCourses(List<Course> courses) {
+    this.courses = courses;
+  }
 }
