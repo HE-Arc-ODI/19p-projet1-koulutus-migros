@@ -24,6 +24,16 @@ public class Course  implements Serializable {
     public String toString() { return super.toString().toLowerCase();}
   }
   private CourseStatus status;
+
+  public enum QuarterEnum {NUMBER_1(Integer.valueOf(1)), NUMBER_2(Integer.valueOf(2)), NUMBER_3(Integer.valueOf(3)), NUMBER_4(Integer.valueOf(4)
+    private Integer quarterEnum;
+    //Constructeur
+    QuarterEnum(Integer quarterEnum){
+      this.quarterEnum = quarterEnum;
+    }
+    public String toString() { return super.toString().toLowerCase();}
+  }
+  private QuarterEnum quarter;
   private List<Session> sessions;
 
   @Id
@@ -67,5 +77,12 @@ public class Course  implements Serializable {
 
   public void setSessions(List<Session> sessions) {
     this.sessions = sessions;
+  }
+
+  public QuarterEnum getQuarter() {
+    return quarter;
+  }
+  public void setQuarter(QuarterEnum quarter) {
+    this.quarter = quarter;
   }
 }
