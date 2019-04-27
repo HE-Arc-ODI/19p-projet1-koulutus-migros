@@ -25,7 +25,7 @@ public class Course  implements Serializable {
   }
   private CourseStatus status;
 
-  public enum QuarterEnum {NUMBER_1(Integer.valueOf(1)), NUMBER_2(Integer.valueOf(2)), NUMBER_3(Integer.valueOf(3)), NUMBER_4(Integer.valueOf(4)
+  public enum QuarterEnum {NUMBER_1(Integer.valueOf(1)), NUMBER_2(Integer.valueOf(2)), NUMBER_3(Integer.valueOf(3)), NUMBER_4(Integer.valueOf(4));
     private Integer quarterEnum;
     //Constructeur
     QuarterEnum(Integer quarterEnum){
