@@ -40,7 +40,7 @@ public class ProgramResource {
     @Path("{id}")
     public void deleteProgram(@PathParam("id") Long id) throws ResourceException {
         try {
-            persistenceService.deletePProgram(id);
+            persistenceService.deleteProgram(id);
         } catch (ProgramException e) {
             e.printStackTrace();
             throw new ProgramException("Program could not be deleted");
