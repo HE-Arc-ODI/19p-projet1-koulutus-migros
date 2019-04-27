@@ -19,7 +19,7 @@ import javax.ws.rs.core.MediaType;
 
 
 
-@Path("customer")
+@Path("participant")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 

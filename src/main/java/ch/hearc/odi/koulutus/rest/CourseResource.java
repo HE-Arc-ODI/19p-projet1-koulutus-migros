@@ -1,4 +1,5 @@
 package ch.hearc.odi.koulutus.rest;
+import ch.hearc.odi.koulutus.business.Course;
 import ch.hearc.odi.koulutus.services.PersistenceService;
 
 import java.text.ParseException;
@@ -28,29 +29,29 @@ public class CourseResource {
 
 
     @GET
-    public List<Resource> ResourceGet() {
-        return persistenceService.getAllResources();
+    public List<Course>CourseGet() {
+        return persistenceService.getAllCourse();
     }
 
     @GET
     @Path("{id}")
-    public Resource getResourceId(@PathParam("id") Long customerId) {
+    public Course getCourseId(@PathParam("id") Long customerId) {
         try {
-            return persistenceService.getResourceById(resourceId);
-        } catch (ResourceException e) {
+            return persistenceService.getCourseById(CourseId);
+        } catch (CourseException e) {
             e.printStackTrace();
-            throw new NotFoundException("the Resource does not exist");
+            throw new NotFoundException("the Course does not exist");
         }
     }
 
     @DELETE
     @Path("{id}")
-    public void deleteResource(@PathParam("id") Long id) throws ResourceException {
+    public void deleteCourse(@PathParam("id") Long id) throws CourseException {
         try {
             persistenceService.deleteResource(id);
         } catch (ResourceException e) {
             e.printStackTrace();
-            throw new ResourceException("Resource could not be deleted");
+            throw new CourseException("Course could not be deleted");
         }
     }
 }
