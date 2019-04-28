@@ -1,10 +1,13 @@
 package ch.hearc.odi.koulutus.business;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -17,6 +20,10 @@ public class Program implements Serializable {
   private String field;
   private int price;
   private List<Course> courses;
+
+  public Program() {
+    courses = new ArrayList<>();
+  }
 
   @Id
   @GeneratedValue(generator = "increment")
@@ -60,7 +67,8 @@ public class Program implements Serializable {
   public void setPrice(int price) {
     this.price = price;
   }
-/*
+
+  @OneToMany(targetEntity = Course.class, fetch = FetchType.EAGER)
   public List<Course> getCourses() {
     return courses;
   }
@@ -68,6 +76,4 @@ public class Program implements Serializable {
   public void setCourses(List<Course> courses) {
     this.courses = courses;
   }
-  
- */
 }

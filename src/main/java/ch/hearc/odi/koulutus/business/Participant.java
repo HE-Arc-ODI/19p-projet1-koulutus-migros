@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -54,12 +56,14 @@ public class Participant implements Serializable {
     this.birthdate = birthdate;
   }
 
-  /*
+/*  @ManyToMany(targetEntity = Course.class, fetch = FetchType.EAGER, mappedBy = "runners")
   public List<Course> getCourses() {
     return courses;
   }
 
   public void setCourses(List<Course> courses) {
     this.courses = courses;
-  }*/
+  }
+
+ */
 }

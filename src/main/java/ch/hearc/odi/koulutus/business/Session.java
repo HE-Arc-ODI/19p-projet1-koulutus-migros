@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -17,6 +18,17 @@ public class Session implements Serializable {
   private Date endDateTime;
   private Double price;
   private String room;
+
+  @ManyToOne
+  public Course getCourse() {
+    return course;
+  }
+
+  public void setCourse(Course course) {
+    this.course = course;
+  }
+
+  private Course course;
 
   @Id
   @GeneratedValue(generator = "increment")

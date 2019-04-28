@@ -14,6 +14,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 public class PersistenceService {
 
@@ -104,13 +105,13 @@ public class PersistenceService {
     return null;
   }
 
-  public Program createAndPersistProgram(Program Program) {
+  public Program createAndPersistProgram(Program program) {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
-    entityManager.persist(Program);
+    entityManager.persist(program);
     entityManager.getTransaction().commit();
     entityManager.close();
-    return Program;
+    return program;
   }
 
   public void deleteProgramById(Long programId) {
@@ -159,6 +160,58 @@ public class PersistenceService {
     entityManager.getTransaction().commit();
     entityManager.close();
     return program;
+  }
+
+  public List<Course> getCoursesByProgramId(Long programId) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    TypedQuery<Course> query = entityManager
+        .createQuery("SELECT c from Course c where c.program.id = :programId", Course.class);
+    List<Course> courses = query.setParameter("programId", programId).getResultList();
+    entityManager.getTransaction().commit();
+    entityManager.close();
+    return (ArrayList<Course>) courses;
+  }
+
+  public Course createAndPersistCourse(Course course) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    entityManager.persist(course);
+    entityManager.getTransaction().commit();
+    entityManager.close();
+    return course;
+  }
+
+  public Course getCourseById(Long programId, Long courseId) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+
+    TypedQuery<Course> query = entityManager.createQuery(
+        "SELECT c from Course c where c.program.id = :programId and c.id = :courseId",
+        Course.class);
+
+    Course course = query.setParameter("programId", programId)
+        .setParameter("courseId", courseId)
+        .getSingleResult();
+
+
+    entityManager.getTransaction().commit();
+    entityManager.close();
+
+    return course;
+  }
+
+  public void deleteCourse(Long programId, Long courseId) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    Course course = getCourseById(programId, courseId);
+    if (course == null) {
+      //TODO: error mgmt
+      return;
+    }
+    entityManager.getTransaction().begin();
+    entityManager.remove(course);
+    entityManager.getTransaction().commit();
+    entityManager.close();
   }
 }
 

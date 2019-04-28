@@ -39,40 +39,40 @@ public class ProgramResource {
 
     @POST
     public Program addProgram(Program program){
-
         return persistenceService.createAndPersistProgram(program);
-
     }
 
     @PUT
     @Path("{programId}")
     public Program updateProgram(@PathParam("programId") Long programId, Program program){
-
         return persistenceService.updateProgramById(programId,program);
-
     }
 
     @GET
     @Path("{programId}/course")
     public List<Course> getCoursesByProgramId(@PathParam("programId") Long programId){
-        return null;
+      return persistenceService.getCoursesByProgramId(programId);
     }
     @POST
     @Path("{programId}/course")
-    public void addCourse(@PathParam("programId") Long programId, Course course){
-
+    public Course addCourse(@PathParam("programId") Long programId, Course course){
+      //TODO: move in PersistenceService?
+      Program program = new Program();
+      program.setId(programId);
+      course.setProgram(program);
+      return persistenceService.createAndPersistCourse(course);
     }
 
     @GET
     @Path("{programId}/course/{courseId}")
     public Course getCourseById(@PathParam("programId") Long programId, @PathParam("courseId") Long courseId ){
-        return null;
+        return persistenceService.getCourseById(programId, courseId);
     }
 
     @DELETE
     @Path("{programId}/course/{courseId}")
     public void deleteCourse(@PathParam("programId") Long programId, @PathParam("courseId") Long courseId){
-
+      persistenceService.deleteCourse(programId, courseId);
     }
 
     @PUT
@@ -80,6 +80,7 @@ public class ProgramResource {
     public void updateCourse(@PathParam("programId") Long programId, @PathParam("courseId") Long courseId,Course course){
 
     }
+
     @GET
     @Path("{programId}/course/{courseId}/participant")
     public List<Participant> getParticipantByCourseID(@PathParam("programId") Long programId, @PathParam("courseId") Long courseId){
