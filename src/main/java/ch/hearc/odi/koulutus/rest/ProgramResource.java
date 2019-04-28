@@ -20,30 +20,20 @@ public class ProgramResource {
     private PersistenceService persistenceService;
 
     @GET
-    public List<Program> ProgramGet() {
-        return persistenceService.getAllProgram();
+    public List<Program> ProgramGet(){
+        return null;
     }
-
     @GET
     @Path("{programId}")
-    public Program getProgram(@PathParam("programId}") Long programId) {
-        try {
-            return persistenceService.getProgramById(programId);
-        } catch (ProgramException e) {
-            e.printStackTrace();
-            throw new NotFoundException("the Program does not exist");
-        }
+    public Program getProgram(@PathParam("programId") Long programId) {
+
+      return null;
     }
 
     @DELETE
     @Path("{programId}")
-    public void deleteProgram(@PathParam("programId") Long programId) throws ResourceException {
-        try {
-            persistenceService.deleteProgram(programId);
-        } catch (ProgramException e) {
-            e.printStackTrace();
-            throw new ProgramException("Program could not be deleted");
-        }
+    public void deleteProgram(@PathParam("programId") Long programId){
+
     }
 
     @POST
@@ -53,7 +43,7 @@ public class ProgramResource {
 
     @PUT
     @Path("{programId}")
-    public void updateProgram(@PathParam("programId") Long programId, Program program) throws ResourceException {
+    public void updateProgram(@PathParam("programId") Long programId, Program program){
 
     }
 

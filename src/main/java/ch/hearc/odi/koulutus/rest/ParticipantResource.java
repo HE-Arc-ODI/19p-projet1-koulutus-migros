@@ -28,30 +28,22 @@ public class ParticipantResource {
     private PersistenceService persistenceService;
 
     @GET
-    public List<Participant> participantGet() {
-        return persistenceService.getAllParticipant();
+    public List<Participant> participantGet() { return null;
     }
 
     @GET
     @Path("{participantId}")
     public Participant getParticipantById(@PathParam("participantId") Long participantId) {
-        try {
-            return persistenceService.getParticipantById(participantId);
-        } catch (ParticipantException e) {
-            e.printStackTrace();
-            throw new NotFoundException("the Participant does not exist");
-        }
+
+
+        return null;
     }
 
     @DELETE
     @Path("{participantId}")
-    public void deleteParticipant(@PathParam("participantId") Long participantId) throws ResourceException {
-        try {
-            persistenceService.deleteParticipant(participantId);
-        } catch (ParticipantException e) {
-            e.printStackTrace();
-            throw new ParticipantException("Participant could not be deleted");
-        }
+    public void deleteParticipant(@PathParam("participantId") Long participantId) {
+
+
     }
 
     @PUT
