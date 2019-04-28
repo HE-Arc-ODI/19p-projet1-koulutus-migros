@@ -9,8 +9,6 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-
-
 @Path("session")
 @Produces(MediaType.APPLICATION_JSON)
 
@@ -24,7 +22,6 @@ public class SessionResource {
     public List<Session> SessionGet() {
         return persistenceService.getAllProgram();
     }
-
 
     @GET
     @Path("{id}")
@@ -47,8 +44,5 @@ public class SessionResource {
             throw new SessionException("Session could not be deleted");
         }
     }
-
-
-
-
+    
 }
