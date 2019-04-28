@@ -21,29 +21,34 @@ public class ProgramResource {
 
     @GET
     public List<Program> ProgramGet(){
-        return null;
+        return persistenceService.getPrograms();
     }
+
     @GET
     @Path("{programId}")
     public Program getProgram(@PathParam("programId") Long programId) {
 
-      return null;
+        return persistenceService.getProgramById(programId);
     }
 
     @DELETE
     @Path("{programId}")
     public void deleteProgram(@PathParam("programId") Long programId){
-
+        persistenceService.deleteProgramById(programId);
     }
 
     @POST
-    public void addProgram(Program program){
+    public Program addProgram(Program program){
+
+        return persistenceService.createAndPersistProgram(program);
 
     }
 
     @PUT
     @Path("{programId}")
-    public void updateProgram(@PathParam("programId") Long programId, Program program){
+    public Program updateProgram(@PathParam("programId") Long programId, Program program){
+
+        return persistenceService.updateProgramById(programId,program);
 
     }
 

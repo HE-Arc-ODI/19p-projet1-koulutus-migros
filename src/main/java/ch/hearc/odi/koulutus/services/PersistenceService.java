@@ -8,6 +8,7 @@ package ch.hearc.odi.koulutus.services;
 import ch.hearc.odi.koulutus.business.Course;
 import ch.hearc.odi.koulutus.business.Participant;
 import ch.hearc.odi.koulutus.business.Pojo;
+import ch.hearc.odi.koulutus.business.Program;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -101,6 +102,63 @@ public class PersistenceService {
 
   public List<Course> getCoursesByParticipantId(Long participantId) {
     return null;
+  }
+
+  public Program createAndPersistProgram(Program Program) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    entityManager.persist(Program);
+    entityManager.getTransaction().commit();
+    entityManager.close();
+    return Program;
+  }
+
+  public void deleteProgramById(Long programId) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    Program program = entityManager.find(Program.class, programId);
+    if (program == null) {
+      return;
+    }
+    entityManager.getTransaction().begin();
+    entityManager.remove(program);
+    entityManager.getTransaction().commit();
+    entityManager.close();
+  }
+
+  public ArrayList<Program> getPrograms() {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    List<Program> program = entityManager
+        .createQuery("from Program", Program.class)
+        .getResultList();
+    entityManager.getTransaction().commit();
+    entityManager.close();
+    return (ArrayList<Program>) program;
+  }
+
+  public Program updateProgramById(Long programId, Program newProgram) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    Program program = entityManager.find(Program.class, programId);
+    program.setName(newProgram.getName());
+    program.setField(newProgram.getField());
+    program.setPrice(newProgram.getPrice());
+    program.setRichDescription(newProgram.getRichDescription());
+    entityManager.getTransaction().commit();
+    return program;
+  }
+
+  public Program getProgramById(Long programId){
+
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    Program program = entityManager.find(Program.class, programId);
+    if (program == null) {
+      return null;
+    }
+    entityManager.getTransaction().commit();
+    entityManager.close();
+    return program;
   }
 }
 
