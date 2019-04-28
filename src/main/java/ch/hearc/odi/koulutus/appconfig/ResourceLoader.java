@@ -22,5 +22,4 @@ public class ResourceLoader extends ResourceConfig {
     register(ServiceFeature.class);
     registerInstances(new ServiceBinder());
   }
-
 }
