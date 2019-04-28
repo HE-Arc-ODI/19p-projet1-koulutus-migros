@@ -2,6 +2,7 @@ package ch.hearc.odi.koulutus.rest;
 
 
 import ch.hearc.odi.koulutus.business.Program;
+import ch.hearc.odi.koulutus.business.Session;
 import ch.hearc.odi.koulutus.services.PersistenceService;
 
 import javax.inject.Inject;
@@ -12,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 
 @Path("session")
 @Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+
 public class SessionResource {
 
 

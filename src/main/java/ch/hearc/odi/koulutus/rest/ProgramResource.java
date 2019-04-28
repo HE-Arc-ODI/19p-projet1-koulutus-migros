@@ -1,6 +1,5 @@
 package ch.hearc.odi.koulutus.rest;
 
-
 import ch.hearc.odi.koulutus.business.Program;
 import ch.hearc.odi.koulutus.services.PersistenceService;
 
@@ -11,10 +10,8 @@ import java.util.List;
 
 @Path("program")
 @Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 
 public class ProgramResource {
-
 
     @Inject
     private PersistenceService persistenceService;
@@ -24,12 +21,11 @@ public class ProgramResource {
         return persistenceService.getAllProgram();
     }
 
-
     @GET
-    @Path("{id}")
-    public Program getProgramId(@PathParam("id") Long customerId) {
+    @Path("{programId}")
+    public Program getProgram(@PathParam("programId}") Long programId) {
         try {
-            return persistenceService.getProgramById(resourceId);
+            return persistenceService.getProgramById(programId);
         } catch (ProgramException e) {
             e.printStackTrace();
             throw new NotFoundException("the Program does not exist");
@@ -37,15 +33,27 @@ public class ProgramResource {
     }
 
     @DELETE
-    @Path("{id}")
-    public void deleteProgram(@PathParam("id") Long id) throws ResourceException {
+    @Path("{programId}")
+    public void deleteProgram(@PathParam("programId") Long programId) throws ResourceException {
         try {
-            persistenceService.deleteProgram(id);
+            persistenceService.deleteProgram(programId);
         } catch (ProgramException e) {
             e.printStackTrace();
             throw new ProgramException("Program could not be deleted");
         }
     }
+
+    @POST
+    public void addProgram(Program program){
+
+    }
+
+    @PUT
+    @Path("{programId}")
+    public void updateProgram(@PathParam("programId") Long programId, Program program) throws ResourceException {
+        
+    }
+
 
 
 }
