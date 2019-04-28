@@ -9,6 +9,7 @@ import ch.hearc.odi.koulutus.business.Course;
 import ch.hearc.odi.koulutus.business.Participant;
 import ch.hearc.odi.koulutus.business.Pojo;
 import ch.hearc.odi.koulutus.business.Program;
+import ch.hearc.odi.koulutus.business.Session;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -149,12 +150,13 @@ public class PersistenceService {
     return program;
   }
 
-  public Program getProgramById(Long programId){
+  public Program getProgramById(Long programId) {
 
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
     Program program = entityManager.find(Program.class, programId);
     if (program == null) {
+      //TODO: error mgmt
       return null;
     }
     entityManager.getTransaction().commit();
@@ -194,7 +196,6 @@ public class PersistenceService {
         .setParameter("courseId", courseId)
         .getSingleResult();
 
-
     entityManager.getTransaction().commit();
     entityManager.close();
 
@@ -203,15 +204,107 @@ public class PersistenceService {
 
   public void deleteCourse(Long programId, Long courseId) {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
-    Course course = getCourseById(programId, courseId);
+    entityManager.getTransaction().begin();
+    //TODO: fix duplicated code - issue with transaction
+    TypedQuery<Course> query = entityManager.createQuery(
+        "SELECT c from Course c where c.program.id = :programId and c.id = :courseId",
+        Course.class);
+
+    Course course = query.setParameter("programId", programId)
+        .setParameter("courseId", courseId)
+        .getSingleResult();
     if (course == null) {
       //TODO: error mgmt
       return;
     }
-    entityManager.getTransaction().begin();
     entityManager.remove(course);
     entityManager.getTransaction().commit();
     entityManager.close();
+  }
+
+  public Course updateCourse(Long programId, Long courseId, Course newCourse) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    Course course = getCourseById(programId, courseId);
+    if (course == null) {
+      //TODO: error mgmt
+      return null;
+    }
+    course.setQuarter(newCourse.getQuarter());
+    course.setYear(newCourse.getYear());
+    course.setMaxNumberOfParticipants(newCourse.getMaxNumberOfParticipants());
+    entityManager.getTransaction().commit();
+    return course;
+  }
+
+  public ArrayList<Session> getSessions(Long programId, Long courseId) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+
+    TypedQuery<Session> query = entityManager.createQuery(
+        "SELECT s from Session s where s.course.program.id = :programId and s.course.id = :courseId",
+        Session.class);
+
+    List<Session> sessions = query.setParameter("programId", programId)
+        .setParameter("courseId", courseId).getResultList();
+
+    entityManager.getTransaction().commit();
+    entityManager.close();
+
+    return (ArrayList<Session>) sessions;
+  }
+
+  public Session getSessionById(Long programId, Long courseId, Long sessionId) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+
+    TypedQuery<Session> query = entityManager.createQuery(
+        "SELECT s from Session s where s.id = :sessionId and s.course.program.id = :programId and s.course.id = :courseId",
+        Session.class);
+
+    Session session = query.setParameter("sessionId", sessionId)
+        .setParameter("programId", programId)
+        .setParameter("courseId", courseId)
+        .getSingleResult();
+
+    entityManager.getTransaction().commit();
+    entityManager.close();
+
+    return session;
+  }
+
+  public void deleteSessionById(Long programId, Long courseId, Long sessionId) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    Session session = getSessionById(programId, courseId, sessionId);
+    if (session == null) {
+      //TODO: error mgmt
+      return;
+    }
+    entityManager.remove(session);
+    entityManager.getTransaction().commit();
+    entityManager.close();
+  }
+
+  public Session updateSession(Long programId, Long courseId, Long sessionId, Session newSession) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    Session session = getSessionById(programId, courseId, sessionId);
+    if (session == null) {
+      //TODO: error mgmt
+      return null;
+    }
+    session.setStartDateTime(newSession.getStartDateTime());
+    session.setEndDateTime(newSession.getEndDateTime());
+    session.setPrice(newSession.getPrice());
+    session.setRoom(newSession.getRoom());
+    entityManager.getTransaction().commit();
+    return session;
+  }
+
+  public List<Session> addSessions(Long programId, Long courseId, List<Session> sessions) {
+    //TODO: loop?
+    return null;
   }
 }
 
