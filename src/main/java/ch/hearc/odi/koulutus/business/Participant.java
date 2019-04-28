@@ -54,11 +54,12 @@ public class Participant implements Serializable {
     this.birthdate = birthdate;
   }
 
+  /*
   public List<Course> getCourses() {
     return courses;
   }
 
   public void setCourses(List<Course> courses) {
     this.courses = courses;
-  }
+  }*/
 }

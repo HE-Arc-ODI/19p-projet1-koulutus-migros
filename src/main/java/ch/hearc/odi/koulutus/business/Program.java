@@ -60,7 +60,7 @@ public class Program implements Serializable {
   public void setPrice(int price) {
     this.price = price;
   }
-
+/*
   public List<Course> getCourses() {
     return courses;
   }
@@ -68,4 +68,6 @@ public class Program implements Serializable {
   public void setCourses(List<Course> courses) {
     this.courses = courses;
   }
+  
+ */
 }
