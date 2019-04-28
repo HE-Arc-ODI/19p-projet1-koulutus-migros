@@ -1,5 +1,7 @@
 package ch.hearc.odi.koulutus.rest;
 
+import ch.hearc.odi.koulutus.business.Course;
+import ch.hearc.odi.koulutus.business.Participant;
 import ch.hearc.odi.koulutus.business.Program;
 import ch.hearc.odi.koulutus.services.PersistenceService;
 
@@ -52,5 +54,40 @@ public class ProgramResource {
     @Path("{programId}")
     public void updateProgram(@PathParam("programId") Long programId, Program program) throws ResourceException {
 
+    }
+
+    @GET
+    @Path("{programId}/course")
+    public List<Course> getCoursesByProgramId(@PathParam("programId") Long programId){
+        return null;
+    }
+    @POST
+    @Path("{programId}/course")
+    public void addCourse(@PathParam("programId") Long programId, Course course){
+
+    }
+
+    @GET
+    @Path("{programId}/course/{courseId}")
+    public Course getCourseById(@PathParam("programId") Long programId, @PathParam("courseId") Long courseId ){
+        return null;
+    }
+
+    @DELETE
+    @Path("{programId}/course/{courseId}")
+    public void deleteCourse(@PathParam("programId") Long programId, @PathParam("courseId") Long courseId){
+
+    }
+
+    @PUT
+    @Path("{programId}/course/{courseId}")
+    public void updateCourse(@PathParam("programId") Long programId, @PathParam("courseId") Long courseId,Course course){
+
+    }
+    @GET
+    @Path("{programId}/course/{courseId}/participant")
+    public List<Participant> getParticipantByCourseID(@PathParam("programId") Long programId, @PathParam("courseId") Long courseId){
+
+        return null;
     }
 }
