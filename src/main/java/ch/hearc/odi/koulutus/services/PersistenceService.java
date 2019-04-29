@@ -226,6 +226,7 @@ public class PersistenceService {
   }
 
   public Course updateCourse(Long programId, Long courseId, Course newCourse) {
+    //TODO: course not saved
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
     Course course = getCourseById(programId, courseId);
@@ -279,7 +280,15 @@ public class PersistenceService {
   public void deleteSessionById(Long programId, Long courseId, Long sessionId) {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
-    Session session = getSessionById(programId, courseId, sessionId);
+    //TODO: duplicated code
+    TypedQuery<Session> query = entityManager.createQuery(
+        "SELECT s from Session s where s.id = :sessionId and s.course.program.id = :programId and s.course.id = :courseId",
+        Session.class);
+
+    Session session = query.setParameter("sessionId", sessionId)
+        .setParameter("programId", programId)
+        .setParameter("courseId", courseId)
+        .getSingleResult();
     if (session == null) {
       //TODO: error mgmt
       return;
@@ -292,7 +301,15 @@ public class PersistenceService {
   public Session updateSession(Long programId, Long courseId, Long sessionId, Session newSession) {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
-    Session session = getSessionById(programId, courseId, sessionId);
+    //TODO: duplicated code
+    TypedQuery<Session> query = entityManager.createQuery(
+        "SELECT s from Session s where s.id = :sessionId and s.course.program.id = :programId and s.course.id = :courseId",
+        Session.class);
+
+    Session session = query.setParameter("sessionId", sessionId)
+        .setParameter("programId", programId)
+        .setParameter("courseId", courseId)
+        .getSingleResult();
     if (session == null) {
       //TODO: error mgmt
       return null;
