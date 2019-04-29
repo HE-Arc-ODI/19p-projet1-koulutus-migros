@@ -1,5 +1,6 @@
 package ch.hearc.odi.koulutus.business;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -104,7 +105,7 @@ public class Course  implements Serializable {
     this.quarter = quarter;
   }
 
-  /*@ManyToMany(targetEntity = Participant.class, fetch = FetchType.EAGER)
+  @ManyToMany(targetEntity = Participant.class, fetch = FetchType.EAGER)
   public List<Participant> getRunners() {
     return runners;
   }
@@ -112,7 +113,7 @@ public class Course  implements Serializable {
   public void setRunners(List<Participant> runners) {
     this.runners = runners;
   }
-  */
+
   @ManyToOne
   public Program getProgram() {
     return program;
