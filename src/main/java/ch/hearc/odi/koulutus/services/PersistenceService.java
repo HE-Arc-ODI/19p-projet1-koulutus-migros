@@ -16,10 +16,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import javax.servlet.http.Part;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 public class PersistenceService {
-
+  private static Logger logger = LogManager.getLogger(PersistenceService.class);
   private EntityManagerFactory entityManagerFactory;
 
   public PersistenceService() {
@@ -51,6 +53,10 @@ public class PersistenceService {
     List<Participant> participants = entityManager
         .createQuery("from Participant", Participant.class)
         .getResultList();
+    if (participants == null) {
+      logger.error(" no participants available");
+      //throw new PersonException("Person " + personId + " was not found");
+    }
     entityManager.getTransaction().commit();
     entityManager.close();
     return (ArrayList<Participant>) participants;
@@ -60,11 +66,10 @@ public class PersistenceService {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
     Participant participant = entityManager.find(Participant.class, participantId);
-/*
     if (participant == null) {
-      throw new PersonException("Person " + personId + " was not found");
+      logger.error(" Participant with id " +participantId +" not found");
+      //throw new PersonException("Person " + personId + " was not found");
     }
-*/
     entityManager.getTransaction().commit();
     entityManager.close();
 
@@ -77,6 +82,7 @@ public class PersistenceService {
     entityManager.persist(participant);
     entityManager.getTransaction().commit();
     entityManager.close();
+    logger.info("Participant "+participant.getFirstName() + " " + participant.getLastName() + " created");
     return participant;
   }
 
@@ -84,10 +90,11 @@ public class PersistenceService {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     Participant participant = entityManager.find(Participant.class, participantId);
     if (participant == null) {
-      return;
+      logger.error(" Participant with id " +participantId +" not found");
     }
     entityManager.getTransaction().begin();
     entityManager.remove(participant);
+    logger.info("Participant "+participant.getFirstName() + " " + participant.getLastName() + " deleted");
     entityManager.getTransaction().commit();
     entityManager.close();
   }
@@ -100,6 +107,7 @@ public class PersistenceService {
     participant.setLastName(newParticipant.getLastName());
     participant.setBirthdate(newParticipant.getBirthdate());
     entityManager.getTransaction().commit();
+    logger.info("Participant "+participant.getFirstName() + " " + participant.getLastName() + " updated");
     return participant;
   }
 
@@ -130,11 +138,12 @@ public class PersistenceService {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     Program program = entityManager.find(Program.class, programId);
     if (program == null) {
-      return;
+      logger.error(" programs with id "+ programId+ " not found");
     }
     entityManager.getTransaction().begin();
     entityManager.remove(program);
     entityManager.getTransaction().commit();
+    logger.info(" Program " + program.getName() +" deleted");
     entityManager.close();
   }
 
@@ -145,6 +154,10 @@ public class PersistenceService {
         .createQuery("from Program", Program.class)
         .getResultList();
     entityManager.getTransaction().commit();
+    if (program == null) {
+      logger.error(" programs not found");
+      return null;
+    }
     entityManager.close();
     return (ArrayList<Program>) program;
   }
@@ -158,6 +171,7 @@ public class PersistenceService {
     program.setPrice(newProgram.getPrice());
     program.setRichDescription(newProgram.getRichDescription());
     entityManager.getTransaction().commit();
+    logger.info(" program " + program.getName() + " updated");
     return program;
   }
 
@@ -167,7 +181,7 @@ public class PersistenceService {
     entityManager.getTransaction().begin();
     Program program = entityManager.find(Program.class, programId);
     if (program == null) {
-      //TODO: error mgmt
+      logger.error(" program with id " + program.getId() + " not found");
       return null;
     }
     entityManager.getTransaction().commit();
@@ -195,6 +209,7 @@ public class PersistenceService {
     entityManager.persist(course);
     entityManager.getTransaction().commit();
     entityManager.close();
+    logger.info("course with id" + course.getId() + " created" );
     return course;
   }
 
@@ -211,6 +226,11 @@ public class PersistenceService {
         .getSingleResult();
 
     entityManager.getTransaction().commit();
+    if(course == null){
+
+      logger.error(" no courses found");
+    }
+
     entityManager.close();
 
     return course;
@@ -228,11 +248,12 @@ public class PersistenceService {
         .setParameter("courseId", courseId)
         .getSingleResult();
     if (course == null) {
-      //TODO: error mgmt
+     logger.error(" course not found");
       return;
     }
     entityManager.remove(course);
     entityManager.getTransaction().commit();
+    logger.info("course deleted");
     entityManager.close();
   }
 
@@ -242,13 +263,14 @@ public class PersistenceService {
     entityManager.getTransaction().begin();
     Course course = getCourseById(programId, courseId);
     if (course == null) {
-      //TODO: error mgmt
+      logger.error( "course with id " + courseId +" not found");
       return null;
     }
     course.setQuarter(newCourse.getQuarter());
     course.setYear(newCourse.getYear());
     course.setMaxNumberOfParticipants(newCourse.getMaxNumberOfParticipants());
     entityManager.getTransaction().commit();
+    logger.info(" course" + course.getId() + " upodated");
     return course;
   }
 
@@ -301,11 +323,12 @@ public class PersistenceService {
         .setParameter("courseId", courseId)
         .getSingleResult();
     if (session == null) {
-      //TODO: error mgmt
+     logger.error(" session not found ");
       return;
     }
     entityManager.remove(session);
     entityManager.getTransaction().commit();
+    logger.info( " session deleted");
     entityManager.close();
   }
 
@@ -322,7 +345,7 @@ public class PersistenceService {
         .setParameter("courseId", courseId)
         .getSingleResult();
     if (session == null) {
-      //TODO: error mgmt
+      logger.error( " session not found");
       return null;
     }
     session.setStartDateTime(newSession.getStartDateTime());
@@ -330,6 +353,7 @@ public class PersistenceService {
     session.setPrice(newSession.getPrice());
     session.setRoom(newSession.getRoom());
     entityManager.getTransaction().commit();
+    logger.info("session updated");
     return session;
   }
 
@@ -348,6 +372,7 @@ public class PersistenceService {
       entityManager.clear();
     }
     entityManager.getTransaction().commit();
+    logger.info("session added");
     return sessions;
   }
 
