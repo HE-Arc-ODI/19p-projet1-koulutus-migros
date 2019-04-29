@@ -62,11 +62,12 @@ public class PersistenceService {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
     Participant participant = entityManager.find(Participant.class, participantId);
-/*
+
     if (participant == null) {
-      throw new PersonException("Person " + personId + " was not found");
+      logger.error(" Participant with id " +participantId +" not found");
+      //throw new PersonException("Person " + personId + " was not found");
     }
-*/
+
     entityManager.getTransaction().commit();
     entityManager.close();
 
@@ -87,7 +88,7 @@ public class PersistenceService {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     Participant participant = entityManager.find(Participant.class, participantId);
     if (participant == null) {
-      return;
+      logger.error(" Participant with id " +participantId +" not found");
     }
     entityManager.getTransaction().begin();
     entityManager.remove(participant);
