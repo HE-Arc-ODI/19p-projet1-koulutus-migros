@@ -7,7 +7,6 @@ package ch.hearc.odi.koulutus.services;
 
 import ch.hearc.odi.koulutus.business.Course;
 import ch.hearc.odi.koulutus.business.Participant;
-import ch.hearc.odi.koulutus.business.Pojo;
 import ch.hearc.odi.koulutus.business.Program;
 import ch.hearc.odi.koulutus.business.Session;
 import ch.hearc.odi.koulutus.exception.CourseException;
@@ -20,7 +19,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import javax.xml.ws.WebServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -39,17 +37,6 @@ public class PersistenceService {
   public void finalize() throws Throwable {
     entityManagerFactory.close();
     super.finalize();
-  }
-
-  public Pojo createAndPersistAPojo(String myProperty) {
-    EntityManager entityManager = entityManagerFactory.createEntityManager();
-    entityManager.getTransaction().begin();
-    Pojo pojo = new Pojo();
-    pojo.setSomeProperty(myProperty);
-    entityManager.persist(pojo);
-    entityManager.getTransaction().commit();
-    entityManager.close();
-    return pojo;
   }
 
   public ArrayList<Participant> getParticipants() throws ParticipantException {
@@ -214,6 +201,7 @@ public class PersistenceService {
   }
 
   public Course createAndPersistCourse(Long programId, Course course) {
+    //TODO: fix that
     Program program = new Program();
     program.setId(programId);
     course.setProgram(program);

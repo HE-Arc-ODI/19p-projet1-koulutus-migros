@@ -76,4 +76,20 @@ public class Program implements Serializable {
   public void setCourses(List<Course> courses) {
     this.courses = courses;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if(this == o){
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Program program = (Program) o;
+    return id == program.getId() &&
+        name.equals(program.getName()) &&
+        richDescription.equals(program.getRichDescription()) &&
+        field.equals(program.getField()) &&
+        price == getPrice();
+  }
 }

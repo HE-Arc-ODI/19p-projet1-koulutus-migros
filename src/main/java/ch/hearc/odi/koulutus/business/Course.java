@@ -121,4 +121,19 @@ public class Course  implements Serializable {
   public void setProgram(Program program) {
     this.program = program;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if(this == o){
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Course course = (Course) o;
+    return id == course.getId() &&
+        quarter == course.getQuarter() &&
+        year == course.getYear() &&
+        maxNumberOfParticipants == course.getMaxNumberOfParticipants();
+  }
 }
