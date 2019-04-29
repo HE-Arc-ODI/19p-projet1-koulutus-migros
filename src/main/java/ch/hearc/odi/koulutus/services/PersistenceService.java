@@ -262,19 +262,18 @@ public class PersistenceService {
 
   public Course updateCourse(Long programId, Long courseId, Course newCourse)
       throws CourseException {
-    //TODO: course not saved
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
-    Course course = getCourseById(programId, courseId);
+    Course course = entityManager.find(Course.class, courseId);
     if (course == null) {
-      logger.error( "course with id " + courseId +" not found");
+      logger.error(" course with id " + course.getId() + " not found");
       throw new CourseException(" course not found");
     }
     course.setQuarter(newCourse.getQuarter());
     course.setYear(newCourse.getYear());
     course.setMaxNumberOfParticipants(newCourse.getMaxNumberOfParticipants());
     entityManager.getTransaction().commit();
-    logger.info(" course" + course.getId() + " upodated");
+    logger.info(" course" + course.getId() + " updated");
     return course;
   }
 
@@ -375,7 +374,7 @@ public class PersistenceService {
 
     Course course = entityManager.find(Course.class, courseId);
     if (course == null) {
-      logger.error(" course with id " + program.getId() + " not found");
+      logger.error(" course with id " + course.getId() + " not found");
       throw new CourseException(" course not found");
     }
     for (Session session : sessions) {
