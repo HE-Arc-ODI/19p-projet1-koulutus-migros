@@ -10,6 +10,7 @@ import ch.hearc.odi.koulutus.business.Participant;
 import ch.hearc.odi.koulutus.business.Pojo;
 import ch.hearc.odi.koulutus.business.Program;
 import ch.hearc.odi.koulutus.business.Session;
+import ch.hearc.odi.koulutus.exception.ParticipantException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -47,7 +48,7 @@ public class PersistenceService {
     return pojo;
   }
 
-  public ArrayList<Participant> getParticipants() {
+  public ArrayList<Participant> getParticipants() throws ParticipantException {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
     List<Participant> participants = entityManager
@@ -55,20 +56,20 @@ public class PersistenceService {
         .getResultList();
     if (participants == null) {
       logger.error(" no participants available");
-      //throw new PersonException("Person " + personId + " was not found");
+      throw new ParticipantException("the list is empty");
     }
     entityManager.getTransaction().commit();
     entityManager.close();
     return (ArrayList<Participant>) participants;
   }
 
-  public Participant getParticipantById(Long participantId) {
+  public Participant getParticipantById(Long participantId) throws ParticipantException {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
     Participant participant = entityManager.find(Participant.class, participantId);
     if (participant == null) {
       logger.error(" Participant with id " +participantId +" not found");
-      //throw new PersonException("Person " + personId + " was not found");
+      throw new ParticipantException("Participant " + participantId + " was not found");
     }
     entityManager.getTransaction().commit();
     entityManager.close();
@@ -76,33 +77,41 @@ public class PersistenceService {
     return participant;
   }
 
-  public Participant createAndPersistParticipant(Participant participant) {
-    EntityManager entityManager = entityManagerFactory.createEntityManager();
-    entityManager.getTransaction().begin();
-    entityManager.persist(participant);
-    entityManager.getTransaction().commit();
-    entityManager.close();
-    logger.info("Participant "+participant.getFirstName() + " " + participant.getLastName() + " created");
-    return participant;
+  public Participant createAndPersistParticipant(Participant participant)
+      throws ParticipantException {
+      EntityManager entityManager = entityManagerFactory.createEntityManager();
+      entityManager.getTransaction().begin();
+      entityManager.persist(participant);
+      entityManager.getTransaction().commit();
+      entityManager.close();
+      logger.info("Participant " + participant.getFirstName() + " " + participant.getLastName()
+          + " created");
+      return participant;
   }
 
-  public void deleteParticipantById(Long participantId) {
+  public void deleteParticipantById(Long participantId) throws ParticipantException {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     Participant participant = entityManager.find(Participant.class, participantId);
     if (participant == null) {
       logger.error(" Participant with id " +participantId +" not found");
+      throw new ParticipantException("Participant " + participantId + " was not found");
     }
     entityManager.getTransaction().begin();
     entityManager.remove(participant);
-    logger.info("Participant "+participant.getFirstName() + " " + participant.getLastName() + " deleted");
     entityManager.getTransaction().commit();
+    logger.info("Participant "+participant.getFirstName() + " " + participant.getLastName() + " deleted");
     entityManager.close();
   }
 
-  public Participant updateParticipantById(Long participantId, Participant newParticipant) {
+  public Participant updateParticipantById(Long participantId, Participant newParticipant)
+      throws ParticipantException {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
     Participant participant = entityManager.find(Participant.class, participantId);
+    if( participant == null){
+      logger.error("Participant not found");
+      throw new ParticipantException("Participant " + participantId + " was not found");
+    }
     participant.setFirstName(newParticipant.getFirstName());
     participant.setLastName(newParticipant.getLastName());
     participant.setBirthdate(newParticipant.getBirthdate());
@@ -111,13 +120,13 @@ public class PersistenceService {
     return participant;
   }
 
-  public List<Course> getCoursesByParticipantId(Long participantId) {
+  public List<Course> getCoursesByParticipantId(Long participantId) throws ParticipantException {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
     Participant participant = entityManager.find(Participant.class, participantId);
-
     if (participant == null) {
-      return null;
+      logger.error("Participant not found");
+      throw new ParticipantException("Participant " + participantId + " was not found");
     }
     entityManager.getTransaction().commit();
     entityManager.close();
