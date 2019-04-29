@@ -16,6 +16,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import javax.servlet.http.Part;
 
 public class PersistenceService {
 
@@ -103,7 +104,17 @@ public class PersistenceService {
   }
 
   public List<Course> getCoursesByParticipantId(Long participantId) {
-    return null;
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    Participant participant = entityManager.find(Participant.class, participantId);
+
+    if (participant == null) {
+      return null;
+    }
+    entityManager.getTransaction().commit();
+    entityManager.close();
+
+    return participant.getCourses();
   }
 
   public Program createAndPersistProgram(Program program) {
@@ -341,12 +352,23 @@ public class PersistenceService {
   }
 
   public List<Participant> getParticipantByCourseId(Long programId, Long courseId) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    Course course = entityManager.find(Course.class, courseId);
+    if (course == null) {
+      //TODO: error mgmt
+      return null;
+    }
+    entityManager.getTransaction().commit();
+    entityManager.close();
+    return course.getRunners();
+    /*
     //TODO: implement
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
 
     TypedQuery<Participant> query = entityManager.createQuery(
-        "SELECT p from Participant p where p.course.program.id = :programId and p.course.id = :courseId",
+        "SELECT p from Participant p join p.courses c where c.id = :courseId and c.program.id = :programId",
         Participant.class);
 
     List<Participant> participants = query.setParameter("programId", programId)
@@ -356,6 +378,44 @@ public class PersistenceService {
     entityManager.close();
 
     return (ArrayList<Participant>) participants;
+
+     */
+  }
+
+  public void registerParticipantToCourse(Long programId, Long courseId, Long participantId) {
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    Program program = entityManager.find(Program.class, programId);
+    if (program == null) {
+      //TODO: error mgmt
+      return;
+    }
+    /*
+    //TODO: fix that -- Coding horror
+    List<Course> courses = program.getCourses();
+    Course selectedCourse = null;
+    for (Course course: courses) {
+      if (course.getId() == courseId) {
+        selectedCourse = course;
+        break;
+      }
+    }
+
+     */
+    Course selectedCourse = entityManager.find(Course.class, courseId);
+    if (selectedCourse == null) {
+      //TODO: error mgmt
+      return;
+    }
+    Participant participant = entityManager.find(Participant.class, participantId);
+    if (participant == null) {
+      //TODO: error mgmt
+      return;
+    }
+    selectedCourse.getRunners().add(participant);
+    entityManager.persist(selectedCourse);
+    entityManager.getTransaction().commit();
+    entityManager.close();
   }
 }
 

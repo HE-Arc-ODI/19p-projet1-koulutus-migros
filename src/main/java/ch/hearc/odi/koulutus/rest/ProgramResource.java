@@ -127,4 +127,11 @@ public class ProgramResource {
       Session session) {
     return persistenceService.updateSession(programId, courseId, sessionId, session);
   }
+
+  @POST
+  @Path("/{programId}/course/{courseId}/participant/{participantId}")
+  public void registerParticipantToCourse(@PathParam("programId") Long programId,
+      @PathParam("courseId") Long courseId, @PathParam("participantId") Long participantId) {
+    persistenceService.registerParticipantToCourse(programId, courseId, participantId);
+  }
 }
