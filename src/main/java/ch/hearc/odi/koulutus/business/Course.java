@@ -1,10 +1,19 @@
 package ch.hearc.odi.koulutus.business;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
+import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -15,6 +24,14 @@ public class Course  implements Serializable {
   private Long id;
   private int year;
   private int maxNumberOfParticipants;
+  private List<Participant> runners;
+
+  private Program program;
+
+  public Course() {
+    runners = new ArrayList<>();
+  }
+
   public enum CourseStatus {OPEN ("open"), CONFIRMED ("confirmed"), CANCELED ("canceled");
     private String coursStatus;
     //Constructeur
@@ -71,6 +88,7 @@ public class Course  implements Serializable {
     this.status = status;
   }
 
+  @OneToMany(targetEntity = Session.class, fetch = FetchType.EAGER)
   public List<Session> getSessions() {
     return sessions;
   }
@@ -85,4 +103,23 @@ public class Course  implements Serializable {
   public void setQuarter(QuarterEnum quarter) {
     this.quarter = quarter;
   }
+
+  /*@ManyToMany(targetEntity = Participant.class, fetch = FetchType.EAGER)
+  public List<Participant> getRunners() {
+    return runners;
+  }
+
+  public void setRunners(List<Participant> runners) {
+    this.runners = runners;
+  }
+  */
+  @ManyToOne
+  public Program getProgram() {
+    return program;
+  }
+
+  public void setProgram(Program program) {
+    this.program = program;
+  }
+
 }

@@ -24,44 +24,41 @@ import javax.ws.rs.core.MediaType;
 
 public class ParticipantResource {
 
-    @Inject
-    private PersistenceService persistenceService;
+  @Inject
+  private PersistenceService persistenceService;
 
-    @GET
-    public List<Participant> participantGet() { return null;
-    }
+  @GET
+  public List<Participant> participantGet() {
+    return persistenceService.getParticipants();
+  }
 
-    @GET
-    @Path("{participantId}")
-    public Participant getParticipantById(@PathParam("participantId") Long participantId) {
+  @GET
+  @Path("{participantId}")
+  public Participant getParticipantById(@PathParam("participantId") Long participantId) {
+    return persistenceService.getParticipantById(participantId);
+  }
 
+  @DELETE
+  @Path("{participantId}")
+  public void deleteParticipant(@PathParam("participantId") Long participantId) {
+    persistenceService.deleteParticipantById(participantId);
+  }
 
-        return null;
-    }
+  @PUT
+  @Path("{participantId}")
+  public Participant updateParticipant(@PathParam("participantId") Long participantId,
+      Participant participant) {
+    return persistenceService.updateParticipantById(participantId, participant);
+  }
 
-    @DELETE
-    @Path("{participantId}")
-    public void deleteParticipant(@PathParam("participantId") Long participantId) {
+  @POST
+  public Participant addParticipant(Participant participant) {
+    return persistenceService.createAndPersistParticipant(participant);
+  }
 
-
-    }
-
-    @PUT
-    @Path("{participantId}")
-    public void updateParticipant(@PathParam("participantId") Long participantId, Participant participant){
-
-    }
-
-    @POST
-    public void addParticipant(Participant participant) {
-
-    }
-
-    @GET
-    @Path("{participantId}/summary")
-    public List<Course> getCoursesByParticipantId(@PathParam("participantId") Long participantId){
-
-    return null;
-    }
-
+  @GET
+  @Path("{participantId}/summary")
+  public List<Course> getCoursesByParticipantId(@PathParam("participantId") Long participantId) {
+    return persistenceService.getCoursesByParticipantId(participantId);
+  }
 }
