@@ -61,7 +61,7 @@ public class ProgramResource {
     Program program = new Program();
     program.setId(programId);
     course.setProgram(program);
-    return persistenceService.createAndPersistCourse(course);
+    return persistenceService.createAndPersistCourse(programId, course);
   }
 
   @GET
@@ -87,10 +87,9 @@ public class ProgramResource {
 
   @GET
   @Path("{programId}/course/{courseId}/participant")
-  public List<Participant> getParticipantByCourseID(@PathParam("programId") Long programId,
+  public List<Participant> getParticipantByCourseId(@PathParam("programId") Long programId,
       @PathParam("courseId") Long courseId) {
-
-    return null;
+    return persistenceService.getParticipantByCourseId(programId, courseId);
   }
 
   @GET

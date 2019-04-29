@@ -175,7 +175,10 @@ public class PersistenceService {
     return (ArrayList<Course>) courses;
   }
 
-  public Course createAndPersistCourse(Course course) {
+  public Course createAndPersistCourse(Long programId, Course course) {
+    Program program = new Program();
+    program.setId(programId);
+    course.setProgram(program);
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
     entityManager.persist(course);
@@ -303,8 +306,39 @@ public class PersistenceService {
   }
 
   public List<Session> addSessions(Long programId, Long courseId, List<Session> sessions) {
-    //TODO: loop?
-    return null;
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+    for (Session session : sessions) {
+      Program program = new Program();
+      program.setId(programId);
+      Course course = new Course();
+      course.setId(courseId);
+      course.setProgram(program);
+      session.setCourse(course);
+      entityManager.persist(session);
+      entityManager.flush();
+      entityManager.clear();
+    }
+    entityManager.getTransaction().commit();
+    return sessions;
+  }
+
+  public List<Participant> getParticipantByCourseId(Long programId, Long courseId) {
+    //TODO: implement
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    entityManager.getTransaction().begin();
+
+    TypedQuery<Participant> query = entityManager.createQuery(
+        "SELECT p from Participant p where p.course.program.id = :programId and p.course.id = :courseId",
+        Participant.class);
+
+    List<Participant> participants = query.setParameter("programId", programId)
+        .setParameter("courseId", courseId).getResultList();
+
+    entityManager.getTransaction().commit();
+    entityManager.close();
+
+    return (ArrayList<Participant>) participants;
   }
 }
 
