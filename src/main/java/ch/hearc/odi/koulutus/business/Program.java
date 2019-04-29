@@ -1,5 +1,6 @@
 package ch.hearc.odi.koulutus.business;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +70,7 @@ public class Program implements Serializable {
   }
 
   @OneToMany(targetEntity = Course.class, fetch = FetchType.EAGER)
+  @JsonManagedReference
   public List<Course> getCourses() {
     return courses;
   }

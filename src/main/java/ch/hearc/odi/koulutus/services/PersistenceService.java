@@ -200,14 +200,20 @@ public class PersistenceService {
     return (ArrayList<Course>) courses;
   }
 
-  public Course createAndPersistCourse(Long programId, Course course) {
+  public Course createAndPersistCourse(Long programId, Course course) throws ProgramException{
     //TODO: fix that
-    Program program = new Program();
-    program.setId(programId);
-    course.setProgram(program);
+
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
+    Program program = entityManager.find(Program.class, programId);
+    if (program == null) {
+      logger.error(" program with id " + program.getId() + " not found");
+      throw new ProgramException(" Program not found");
+    }
+    course.setProgram(program);
+    program.getCourses().add(course);
     entityManager.persist(course);
+    //entityManager.persist(program);
     entityManager.getTransaction().commit();
     entityManager.close();
     logger.info("course with id" + course.getId() + " created" );

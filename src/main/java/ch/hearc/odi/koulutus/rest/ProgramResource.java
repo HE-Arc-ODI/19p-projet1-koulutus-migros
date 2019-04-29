@@ -85,7 +85,11 @@ public class ProgramResource {
       Program program = new Program();
       program.setId(programId);
       course.setProgram(program);
+      try {
       return persistenceService.createAndPersistCourse(programId, course);
+      } catch ( ProgramException e){
+        throw new WebApplicationException(e.getMessage());
+      }
   }
 
   @GET

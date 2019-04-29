@@ -55,7 +55,7 @@ public class PersistenceServiceTest {
   }
 
   @Test
-  public void createAndPersistACourse() {
+  public void createAndPersistACourse() throws Exception{
     Course course = new Course();
     //TODO: fix enum?
     course.setQuarter(QuarterEnum.NUMBER_2);

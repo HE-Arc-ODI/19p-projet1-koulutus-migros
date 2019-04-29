@@ -1,5 +1,6 @@
 package ch.hearc.odi.koulutus.business;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -113,6 +114,7 @@ public class Course  implements Serializable {
   }
 
   @ManyToOne
+  @JsonBackReference
   @IndexColumn(name="Programs")
   public Program getProgram() {
     return program;
