@@ -4,6 +4,7 @@ import ch.hearc.odi.koulutus.business.Course;
 import ch.hearc.odi.koulutus.business.Participant;
 import ch.hearc.odi.koulutus.business.Program;
 import ch.hearc.odi.koulutus.business.Session;
+import ch.hearc.odi.koulutus.exception.ProgramException;
 import ch.hearc.odi.koulutus.services.PersistenceService;
 
 import javax.inject.Inject;
@@ -21,31 +22,51 @@ public class ProgramResource {
 
   @GET
   public List<Program> ProgramGet() {
-    return persistenceService.getPrograms();
+    try{
+      return persistenceService.getPrograms();
+    } catch ( ProgramException e ){
+      throw new WebApplicationException(e.getMessage());
+    }
   }
 
   @GET
   @Path("{programId}")
   public Program getProgram(@PathParam("programId") Long programId) {
-
-    return persistenceService.getProgramById(programId);
+ try {
+   return persistenceService.getProgramById(programId);
+      } catch ( ProgramException e ){
+      throw new WebApplicationException(e.getMessage());
+    }
   }
 
   @DELETE
   @Path("{programId}")
   public void deleteProgram(@PathParam("programId") Long programId) {
+    try{
     persistenceService.deleteProgramById(programId);
+    } catch ( ProgramException e ){
+      throw new WebApplicationException(e.getMessage());
+    }
   }
 
   @POST
   public Program addProgram(Program program) {
+    try{
     return persistenceService.createAndPersistProgram(program);
+    } catch ( ProgramException e ){
+      throw new WebApplicationException(e.getMessage());
+    }
   }
 
   @PUT
   @Path("{programId}")
+
   public Program updateProgram(@PathParam("programId") Long programId, Program program) {
+    try{
     return persistenceService.updateProgramById(programId, program);
+    } catch ( ProgramException e ){
+      throw new WebApplicationException(e.getMessage());
+    }
   }
 
   @GET

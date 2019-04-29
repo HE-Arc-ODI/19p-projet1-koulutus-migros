@@ -11,12 +11,14 @@ import ch.hearc.odi.koulutus.business.Pojo;
 import ch.hearc.odi.koulutus.business.Program;
 import ch.hearc.odi.koulutus.business.Session;
 import ch.hearc.odi.koulutus.exception.ParticipantException;
+import ch.hearc.odi.koulutus.exception.ProgramException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import javax.xml.ws.WebServiceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -134,16 +136,16 @@ public class PersistenceService {
     return participant.getCourses();
   }
 
-  public Program createAndPersistProgram(Program program) {
-    EntityManager entityManager = entityManagerFactory.createEntityManager();
-    entityManager.getTransaction().begin();
-    entityManager.persist(program);
-    entityManager.getTransaction().commit();
-    entityManager.close();
-    return program;
+  public Program createAndPersistProgram(Program program) throws ProgramException {
+      EntityManager entityManager = entityManagerFactory.createEntityManager();
+      entityManager.getTransaction().begin();
+      entityManager.persist(program);
+      entityManager.getTransaction().commit();
+      entityManager.close();
+      return program;
   }
 
-  public void deleteProgramById(Long programId) {
+  public void deleteProgramById(Long programId) throws ProgramException {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     Program program = entityManager.find(Program.class, programId);
     if (program == null) {
@@ -156,7 +158,7 @@ public class PersistenceService {
     entityManager.close();
   }
 
-  public ArrayList<Program> getPrograms() {
+  public ArrayList<Program> getPrograms() throws ProgramException {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
     List<Program> program = entityManager
@@ -165,13 +167,13 @@ public class PersistenceService {
     entityManager.getTransaction().commit();
     if (program == null) {
       logger.error(" programs not found");
-      return null;
+      throw new ProgramException(" Program not found");
     }
     entityManager.close();
     return (ArrayList<Program>) program;
   }
 
-  public Program updateProgramById(Long programId, Program newProgram) {
+  public Program updateProgramById(Long programId, Program newProgram) throws ProgramException {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
     Program program = entityManager.find(Program.class, programId);
@@ -184,7 +186,7 @@ public class PersistenceService {
     return program;
   }
 
-  public Program getProgramById(Long programId) {
+  public Program getProgramById(Long programId) throws ProgramException {
 
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
