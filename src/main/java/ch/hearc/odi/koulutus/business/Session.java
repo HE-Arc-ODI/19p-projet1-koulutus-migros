@@ -1,5 +1,6 @@
 package ch.hearc.odi.koulutus.business;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -18,16 +19,6 @@ public class Session implements Serializable {
   private Date endDateTime;
   private Double price;
   private String room;
-
-  @ManyToOne
-  public Course getCourse() {
-    return course;
-  }
-
-  public void setCourse(Course course) {
-    this.course = course;
-  }
-
   private Course course;
 
   @Id
@@ -71,5 +62,15 @@ public class Session implements Serializable {
 
   public void setRoom(String room) {
     this.room = room;
+  }
+
+  @JsonIgnore
+  @ManyToOne
+  public Course getCourse() {
+    return course;
+  }
+
+  public void setCourse(Course course) {
+    this.course = course;
   }
 }

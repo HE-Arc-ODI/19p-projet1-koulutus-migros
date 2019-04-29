@@ -8,15 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
-import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.IndexColumn;
 
 @Entity
 @Table
@@ -25,12 +22,12 @@ public class Course  implements Serializable {
   private Long id;
   private int year;
   private int maxNumberOfParticipants;
-  private List<Participant> runners;
+  private List<Participant> participants;
 
   private Program program;
 
   public Course() {
-    runners = new ArrayList<>();
+    participants = new ArrayList<>();
   }
 
   public enum CourseStatus {OPEN ("open"), CONFIRMED ("confirmed"), CANCELED ("canceled");
@@ -106,15 +103,17 @@ public class Course  implements Serializable {
   }
 
   @ManyToMany(targetEntity = Participant.class, fetch = FetchType.EAGER)
-  public List<Participant> getRunners() {
-    return runners;
+  @IndexColumn(name="Participants")
+  public List<Participant> getParticipants() {
+    return participants;
   }
 
-  public void setRunners(List<Participant> runners) {
-    this.runners = runners;
+  public void setParticipants(List<Participant> participants) {
+    this.participants = participants;
   }
 
   @ManyToOne
+  @IndexColumn(name="Programs")
   public Program getProgram() {
     return program;
   }
@@ -123,4 +122,18 @@ public class Course  implements Serializable {
     this.program = program;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if(this == o){
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Course course = (Course) o;
+    return id == course.getId() &&
+        quarter == course.getQuarter() &&
+        year == course.getYear() &&
+        maxNumberOfParticipants == course.getMaxNumberOfParticipants();
+  }
 }

@@ -20,7 +20,7 @@ public class Participant implements Serializable {
   private Long id;
   private String firstName = null;
   private String lastName = null;
-  private Date birthdate = null;
+  private String birthdate = null;
   private List<Course> courses;
 
   public Participant() {
@@ -54,21 +54,36 @@ public class Participant implements Serializable {
     this.lastName = lastName;
   }
 
-  public Date getBirthdate() {
+  public String getBirthdate() {
     return birthdate;
   }
 
-  public void setBirthdate(Date birthdate) {
+  public void setBirthdate(String birthdate) {
     this.birthdate = birthdate;
   }
 
   @JsonBackReference
-  @ManyToMany(targetEntity = Course.class, fetch = FetchType.EAGER, mappedBy = "runners")
+  @ManyToMany(mappedBy = "participants")
   public List<Course> getCourses() {
     return courses;
   }
 
   public void setCourses(List<Course> courses) {
     this.courses = courses;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if(this == o){
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Participant participant = (Participant) o;
+    return id == participant.getId() &&
+        firstName.equals(participant.getFirstName()) &&
+        lastName.equals(participant.getLastName()) &&
+        birthdate.equals(participant.getBirthdate());
   }
 }
