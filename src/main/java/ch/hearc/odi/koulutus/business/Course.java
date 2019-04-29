@@ -88,6 +88,7 @@ public class Course  implements Serializable {
   }
 
   @OneToMany(targetEntity = Session.class, fetch = FetchType.EAGER)
+  @JsonManagedReference
   public List<Session> getSessions() {
     return sessions;
   }

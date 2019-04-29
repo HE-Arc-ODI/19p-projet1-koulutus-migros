@@ -364,16 +364,23 @@ public class PersistenceService {
     return session;
   }
 
-  public List<Session> addSessions(Long programId, Long courseId, List<Session> sessions)   throws SessionException{
+  public List<Session> addSessions(Long programId, Long courseId, List<Session> sessions)  throws SessionException, CourseException, ProgramException{
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
+    Program program = entityManager.find(Program.class, programId);
+    if (program == null) {
+      logger.error(" program not found");
+      throw new ProgramException("program not found");
+    }
+
+    Course course = entityManager.find(Course.class, courseId);
+    if (course == null) {
+      logger.error(" course with id " + program.getId() + " not found");
+      throw new CourseException(" course not found");
+    }
     for (Session session : sessions) {
-      Program program = new Program();
-      program.setId(programId);
-      Course course = new Course();
-      course.setId(courseId);
-      course.setProgram(program);
       session.setCourse(course);
+      course.getSessions().add(session);
       entityManager.persist(session);
       entityManager.flush();
       entityManager.clear();

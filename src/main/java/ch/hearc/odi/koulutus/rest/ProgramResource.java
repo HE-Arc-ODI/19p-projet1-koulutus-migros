@@ -153,7 +153,7 @@ public class ProgramResource {
       @PathParam("courseId") Long courseId, List<Session> sessions) {
     try{
     return persistenceService.addSessions(programId, courseId, sessions);
-    } catch ( SessionException e){
+    } catch ( Exception e){
       throw new WebApplicationException(e.getMessage());
     }
   }

@@ -1,5 +1,6 @@
 package ch.hearc.odi.koulutus.business;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
@@ -15,8 +16,8 @@ import org.hibernate.annotations.GenericGenerator;
 public class Session implements Serializable {
 
   private Long id = null;
-  private Date startDateTime;
-  private Date endDateTime;
+  private String startDateTime;
+  private String endDateTime;
   private Double price;
   private String room;
   private Course course;
@@ -32,19 +33,19 @@ public class Session implements Serializable {
     this.id = id;
   }
 
-  public Date getStartDateTime() {
+  public String getStartDateTime() {
     return startDateTime;
   }
 
-  public void setStartDateTime(Date startDateTime) {
+  public void setStartDateTime(String startDateTime) {
     this.startDateTime = startDateTime;
   }
 
-  public Date getEndDateTime() {
+  public String getEndDateTime() {
     return endDateTime;
   }
 
-  public void setEndDateTime(Date endDateTime) {
+  public void setEndDateTime(String endDateTime) {
     this.endDateTime = endDateTime;
   }
 
@@ -64,8 +65,8 @@ public class Session implements Serializable {
     this.room = room;
   }
 
-  @JsonIgnore
   @ManyToOne
+  @JsonBackReference
   public Course getCourse() {
     return course;
   }
