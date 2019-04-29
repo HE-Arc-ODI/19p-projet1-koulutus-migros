@@ -63,7 +63,7 @@ public class Participant implements Serializable {
   }
 
   @JsonBackReference
-  @ManyToMany(targetEntity = Course.class, fetch = FetchType.EAGER, mappedBy = "runners")
+  @ManyToMany(mappedBy = "participants")
   public List<Course> getCourses() {
     return courses;
   }

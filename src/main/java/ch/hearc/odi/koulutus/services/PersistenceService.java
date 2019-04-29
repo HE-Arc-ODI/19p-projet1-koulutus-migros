@@ -386,7 +386,7 @@ public class PersistenceService {
     }
     entityManager.getTransaction().commit();
     entityManager.close();
-    return course.getRunners();
+    return course.getParticipants();
     /*
     //TODO: implement
     EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -437,7 +437,7 @@ public class PersistenceService {
       //TODO: error mgmt
       return;
     }
-    selectedCourse.getRunners().add(participant);
+    selectedCourse.getParticipants().add(participant);
     entityManager.persist(selectedCourse);
     entityManager.getTransaction().commit();
     entityManager.close();
