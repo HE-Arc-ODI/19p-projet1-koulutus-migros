@@ -10,8 +10,10 @@ import ch.hearc.odi.koulutus.business.Participant;
 import ch.hearc.odi.koulutus.business.Pojo;
 import ch.hearc.odi.koulutus.business.Program;
 import ch.hearc.odi.koulutus.business.Session;
+import ch.hearc.odi.koulutus.exception.CourseException;
 import ch.hearc.odi.koulutus.exception.ParticipantException;
 import ch.hearc.odi.koulutus.exception.ProgramException;
+import ch.hearc.odi.koulutus.exception.SessionException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -193,7 +195,7 @@ public class PersistenceService {
     Program program = entityManager.find(Program.class, programId);
     if (program == null) {
       logger.error(" program with id " + program.getId() + " not found");
-      return null;
+      throw new ProgramException(" Program not found");
     }
     entityManager.getTransaction().commit();
     entityManager.close();
@@ -224,22 +226,19 @@ public class PersistenceService {
     return course;
   }
 
-  public Course getCourseById(Long programId, Long courseId) {
+  public Course getCourseById(Long programId, Long courseId) throws CourseException {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
-
     TypedQuery<Course> query = entityManager.createQuery(
         "SELECT c from Course c where c.program.id = :programId and c.id = :courseId",
         Course.class);
-
     Course course = query.setParameter("programId", programId)
         .setParameter("courseId", courseId)
         .getSingleResult();
-
     entityManager.getTransaction().commit();
     if(course == null){
-
       logger.error(" no courses found");
+      throw new CourseException(" course not found");
     }
 
     entityManager.close();
@@ -247,20 +246,19 @@ public class PersistenceService {
     return course;
   }
 
-  public void deleteCourse(Long programId, Long courseId) {
+  public void deleteCourse(Long programId, Long courseId) throws CourseException {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
     //TODO: fix duplicated code - issue with transaction
     TypedQuery<Course> query = entityManager.createQuery(
         "SELECT c from Course c where c.program.id = :programId and c.id = :courseId",
         Course.class);
-
     Course course = query.setParameter("programId", programId)
         .setParameter("courseId", courseId)
         .getSingleResult();
     if (course == null) {
      logger.error(" course not found");
-      return;
+      throw new CourseException(" course not found");
     }
     entityManager.remove(course);
     entityManager.getTransaction().commit();
@@ -268,14 +266,15 @@ public class PersistenceService {
     entityManager.close();
   }
 
-  public Course updateCourse(Long programId, Long courseId, Course newCourse) {
+  public Course updateCourse(Long programId, Long courseId, Course newCourse)
+      throws CourseException {
     //TODO: course not saved
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
     Course course = getCourseById(programId, courseId);
     if (course == null) {
       logger.error( "course with id " + courseId +" not found");
-      return null;
+      throw new CourseException(" course not found");
     }
     course.setQuarter(newCourse.getQuarter());
     course.setYear(newCourse.getYear());
@@ -285,43 +284,45 @@ public class PersistenceService {
     return course;
   }
 
-  public ArrayList<Session> getSessions(Long programId, Long courseId) {
+  public ArrayList<Session> getSessions(Long programId, Long courseId) throws SessionException {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
-
     TypedQuery<Session> query = entityManager.createQuery(
         "SELECT s from Session s where s.course.program.id = :programId and s.course.id = :courseId",
         Session.class);
-
     List<Session> sessions = query.setParameter("programId", programId)
         .setParameter("courseId", courseId).getResultList();
-
     entityManager.getTransaction().commit();
     entityManager.close();
-
+    if( sessions == null){
+      logger.error( "sessions not found");
+      throw new SessionException(" session not found");
+    }
     return (ArrayList<Session>) sessions;
   }
 
-  public Session getSessionById(Long programId, Long courseId, Long sessionId) {
+  public Session getSessionById(Long programId, Long courseId, Long sessionId)
+      throws SessionException {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
-
     TypedQuery<Session> query = entityManager.createQuery(
         "SELECT s from Session s where s.id = :sessionId and s.course.program.id = :programId and s.course.id = :courseId",
         Session.class);
-
     Session session = query.setParameter("sessionId", sessionId)
         .setParameter("programId", programId)
         .setParameter("courseId", courseId)
         .getSingleResult();
-
     entityManager.getTransaction().commit();
     entityManager.close();
-
+    if(session == null){
+      logger.error( "sessions not found");
+      throw new SessionException(" session not found");
+    }
     return session;
   }
 
-  public void deleteSessionById(Long programId, Long courseId, Long sessionId) {
+  public void deleteSessionById(Long programId, Long courseId, Long sessionId)
+      throws SessionException {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
     //TODO: duplicated code
@@ -335,7 +336,7 @@ public class PersistenceService {
         .getSingleResult();
     if (session == null) {
      logger.error(" session not found ");
-      return;
+      throw new SessionException(" session not found");
     }
     entityManager.remove(session);
     entityManager.getTransaction().commit();
@@ -343,7 +344,8 @@ public class PersistenceService {
     entityManager.close();
   }
 
-  public Session updateSession(Long programId, Long courseId, Long sessionId, Session newSession) {
+  public Session updateSession(Long programId, Long courseId, Long sessionId, Session newSession)
+      throws SessionException {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
     //TODO: duplicated code
@@ -357,7 +359,7 @@ public class PersistenceService {
         .getSingleResult();
     if (session == null) {
       logger.error( " session not found");
-      return null;
+      throw new SessionException(" session not found");
     }
     session.setStartDateTime(newSession.getStartDateTime());
     session.setEndDateTime(newSession.getEndDateTime());
@@ -368,7 +370,7 @@ public class PersistenceService {
     return session;
   }
 
-  public List<Session> addSessions(Long programId, Long courseId, List<Session> sessions) {
+  public List<Session> addSessions(Long programId, Long courseId, List<Session> sessions)   throws SessionException{
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
     for (Session session : sessions) {
@@ -387,13 +389,14 @@ public class PersistenceService {
     return sessions;
   }
 
-  public List<Participant> getParticipantByCourseId(Long programId, Long courseId) {
+  public List<Participant> getParticipantByCourseId(Long programId, Long courseId)
+      throws CourseException {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
     Course course = entityManager.find(Course.class, courseId);
     if (course == null) {
-      //TODO: error mgmt
-      return null;
+      logger.error(" course not found");
+      throw new CourseException("Course not found");
     }
     entityManager.getTransaction().commit();
     entityManager.close();
@@ -418,13 +421,14 @@ public class PersistenceService {
      */
   }
 
-  public void registerParticipantToCourse(Long programId, Long courseId, Long participantId) {
+  public void registerParticipantToCourse(Long programId, Long courseId, Long participantId)
+      throws ProgramException, CourseException, ParticipantException {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
     Program program = entityManager.find(Program.class, programId);
     if (program == null) {
-      //TODO: error mgmt
-      return;
+      logger.error("Program not found");
+      throw new ProgramException("program not found");
     }
     /*
     //TODO: fix that -- Coding horror
@@ -440,13 +444,13 @@ public class PersistenceService {
      */
     Course selectedCourse = entityManager.find(Course.class, courseId);
     if (selectedCourse == null) {
-      //TODO: error mgmt
-      return;
+      logger.error( "course with id " + courseId +" not found");
+      throw new CourseException(" course not found");
     }
     Participant participant = entityManager.find(Participant.class, participantId);
     if (participant == null) {
-      //TODO: error mgmt
-      return;
+      logger.error( "Participant not found ");
+      throw new ParticipantException("Paricipant not found");
     }
     selectedCourse.getRunners().add(participant);
     entityManager.persist(selectedCourse);
