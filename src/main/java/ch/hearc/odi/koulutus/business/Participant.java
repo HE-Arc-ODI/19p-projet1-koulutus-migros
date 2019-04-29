@@ -1,6 +1,8 @@
 package ch.hearc.odi.koulutus.business;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -20,6 +22,10 @@ public class Participant implements Serializable {
   private String lastName = null;
   private Date birthdate = null;
   private List<Course> courses;
+
+  public Participant() {
+    courses = new ArrayList<>();
+  }
 
   @Id
   @GeneratedValue(generator = "increment")
@@ -56,7 +62,8 @@ public class Participant implements Serializable {
     this.birthdate = birthdate;
   }
 
-/*  @ManyToMany(targetEntity = Course.class, fetch = FetchType.EAGER, mappedBy = "runners")
+  @JsonBackReference
+  @ManyToMany(targetEntity = Course.class, fetch = FetchType.EAGER, mappedBy = "runners")
   public List<Course> getCourses() {
     return courses;
   }
@@ -64,6 +71,4 @@ public class Participant implements Serializable {
   public void setCourses(List<Course> courses) {
     this.courses = courses;
   }
-
- */
 }
