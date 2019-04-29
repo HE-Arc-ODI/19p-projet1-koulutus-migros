@@ -15,9 +15,9 @@ import javax.ws.rs.ext.Provider;
 @Provider
 public class ServiceFeature implements Feature {
 
-  @Override
-  public boolean configure(final FeatureContext context) {
-    context.register(new ServiceBinder());
-    return true;
-  }
+    @Override
+    public boolean configure(final FeatureContext context) {
+        context.register(new ServiceBinder());
+        return true;
+    }
 }
