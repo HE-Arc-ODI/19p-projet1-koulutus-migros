@@ -53,6 +53,10 @@ public class PersistenceService {
     List<Participant> participants = entityManager
         .createQuery("from Participant", Participant.class)
         .getResultList();
+    if (participants == null) {
+      logger.error(" no participants available");
+      //throw new PersonException("Person " + personId + " was not found");
+    }
     entityManager.getTransaction().commit();
     entityManager.close();
     return (ArrayList<Participant>) participants;
@@ -62,12 +66,10 @@ public class PersistenceService {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     entityManager.getTransaction().begin();
     Participant participant = entityManager.find(Participant.class, participantId);
-
     if (participant == null) {
       logger.error(" Participant with id " +participantId +" not found");
       //throw new PersonException("Person " + personId + " was not found");
     }
-
     entityManager.getTransaction().commit();
     entityManager.close();
 
@@ -126,7 +128,7 @@ public class PersistenceService {
     EntityManager entityManager = entityManagerFactory.createEntityManager();
     Program program = entityManager.find(Program.class, programId);
     if (program == null) {
-      return;
+      logger.error(" programs with id "+ programId+ " not found");
     }
     entityManager.getTransaction().begin();
     entityManager.remove(program);
