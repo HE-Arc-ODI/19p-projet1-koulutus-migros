@@ -213,6 +213,11 @@ public class PersistenceService {
         .getSingleResult();
 
     entityManager.getTransaction().commit();
+    if(course == null){
+
+      logger.error(" no courses found");
+    }
+
     entityManager.close();
 
     return course;
@@ -335,7 +340,7 @@ public class PersistenceService {
     session.setPrice(newSession.getPrice());
     session.setRoom(newSession.getRoom());
     entityManager.getTransaction().commit();
-    logger.info("session updated")
+    logger.info("session updated");
     return session;
   }
 

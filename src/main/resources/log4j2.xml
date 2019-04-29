@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="INFO">
   <Appenders>
-    <File name="warningLogFile" fileName="log/warning.log">
+    <File name="warningLogFile" fileName="logs/warning.log">
       <LevelRangeFilter minLevel="WARN" maxLevel="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
 
       <PatternLayout>
@@ -14,7 +14,7 @@
       <PatternLayout
         pattern="%d{HH:mm:ss} [%t] %-5level %c - %msg%n" />
     </File>
-    <File name="infoLogFile" fileName="log/info.log">
+    <File name="infoLogFile" fileName="logs/info.log">
       <LevelRangeFilter minLevel="INFO" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
       <PatternLayout
         pattern="%highlight{%d{HH:mm:ss} [%t] %-5level %c - %msg%n}{FATAL=red, WARN=yellow, INFO=black}" disableAnsi="false"/>
