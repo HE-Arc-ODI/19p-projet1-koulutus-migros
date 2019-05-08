@@ -1,0 +1,1993 @@
+{
+	"id": "ea3816a5-9dad-43b9-9d18-718e9916588d",
+	"name": "Koulutus training programs API",
+	"allTests": [],
+	"timestamp": "2019-05-07T12:51:56.417Z",
+	"collection_id": "919f0ff0-df7e-4a63-acc9-cc17bc3d4182",
+	"folder_id": 0,
+	"target_type": "collection",
+	"environment_id": "91d42508-c168-480a-acb4-532a86524b24",
+	"data": [],
+	"delay": 0,
+	"count": 1,
+	"collection": {
+		"id": "919f0ff0-df7e-4a63-acc9-cc17bc3d4182",
+		"name": "Koulutus training programs API",
+		"description": "Koulutus (meaning education in Finnish) is an api to manage training programs.\n",
+		"auth": null,
+		"events": [
+			{
+				"listen": "prerequest",
+				"script": {
+					"id": "efe2b440-f926-45dd-9e87-6dd9b9018419",
+					"type": "text/javascript",
+					"exec": [
+						""
+					]
+				}
+			},
+			{
+				"listen": "test",
+				"script": {
+					"id": "1aef6662-590f-4537-9679-68c04e81c022",
+					"type": "text/javascript",
+					"exec": [
+						""
+					]
+				}
+			}
+		],
+		"variables": [
+			{
+				"key": "baseUrl",
+				"value": "http://localhost:8080/19p_projet1_war_exploded/koulutus/api",
+				"enabled": true
+			}
+		],
+		"order": [],
+		"folders_order": [
+			"0861a3d6-7134-47ee-b093-3fb0782ad1af",
+			"cd3b0c12-0c34-46aa-bd9d-114099ed87f6",
+			"62739bd2-4c3e-40a9-94ab-b491d327bf2f",
+			"8a85e75f-c416-4424-af5f-e87835795f6a"
+		],
+		"owner": "3197604",
+		"favorite": false,
+		"type": "collection",
+		"depth": 0
+	},
+	"folder": null,
+	"environment": null,
+	"globals": [],
+	"results": [
+		{
+			"name": "Create a new training program",
+			"id": "13f4fd7f-f0fc-40de-88eb-7489f1bc5e8f",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"name is correct": true,
+				"richDescription is correct": true,
+				"field is correct": true,
+				"price is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"name is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"richDescription is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"field is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"price is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"948"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"name is correct": true,
+					"richDescription is correct": true,
+					"field is correct": true,
+					"price is correct": true
+				}
+			],
+			"time": "948",
+			"totalRequestTime": "948",
+			"iterationResults": {}
+		},
+		{
+			"name": "List all training programs",
+			"id": "9f5cffea-0eda-404d-9e50-f98a28c94c76",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"name is correct": true,
+				"richDescription is correct": true,
+				"field is correct": true,
+				"price is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"name is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"richDescription is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"field is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"price is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"405"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"name is correct": true,
+					"richDescription is correct": true,
+					"field is correct": true,
+					"price is correct": true
+				}
+			],
+			"time": "405",
+			"totalRequestTime": "405",
+			"iterationResults": {}
+		},
+		{
+			"name": "View the details of a training program",
+			"id": "50ec05e1-89b0-47dc-98f0-b70287cea215",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/1",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"name is correct": true,
+				"richDescription is correct": true,
+				"field is correct": true,
+				"price is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"name is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"richDescription is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"field is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"price is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"68"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"name is correct": true,
+					"richDescription is correct": true,
+					"field is correct": true,
+					"price is correct": true
+				}
+			],
+			"time": "68",
+			"totalRequestTime": "68",
+			"iterationResults": {}
+		},
+		{
+			"name": "update an existing training program. Returns the updated training program.",
+			"id": "22e2ba24-e2b0-4b3f-bb1d-91c62b38e399",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/1",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"name is correct": true,
+				"richDescription is correct": true,
+				"field is correct": true,
+				"price is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"name is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"richDescription is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"field is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"price is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"35"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"name is correct": true,
+					"richDescription is correct": true,
+					"field is correct": true,
+					"price is correct": true
+				}
+			],
+			"time": "35",
+			"totalRequestTime": "35",
+			"iterationResults": {}
+		},
+		{
+			"name": "Delete an existing training program",
+			"id": "9b378f7b-9ddb-42de-a89f-749f757a4bf4",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/1",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content",
+				"detail": {
+					"name": "No Content",
+					"detail": "The server successfully processed the request, but is not returning any content."
+				}
+			},
+			"tests": {
+				"Check status code": true,
+				"array is empty": true
+			},
+			"testPassFailCounts": {
+				"Check status code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"array is empty": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"51"
+			],
+			"allTests": [
+				{
+					"Check status code": true,
+					"array is empty": true
+				}
+			],
+			"time": "51",
+			"totalRequestTime": "51",
+			"iterationResults": {}
+		},
+		{
+			"name": "Add a new course to an existing program",
+			"id": "4f7455cd-2bee-4eb3-b6ba-806cca1e0918",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/2/course",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"quarter is correct": false,
+				"year is correct": true,
+				"maxNumberOfParticipants is correct": true,
+				"status is correct": false
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"quarter is correct": {
+					"pass": 0,
+					"fail": 1
+				},
+				"year is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"maxNumberOfParticipants is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"status is correct": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"48"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"quarter is correct": false,
+					"year is correct": true,
+					"maxNumberOfParticipants is correct": true,
+					"status is correct": false
+				}
+			],
+			"time": "48",
+			"totalRequestTime": "48",
+			"iterationResults": {}
+		},
+		{
+			"name": "Get all course for a given program",
+			"id": "8d40e3de-2699-48c6-b188-9d6699b42732",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/2/course",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"quarter is correct": false,
+				"year is correct": true,
+				"maxNumberOfParticipants is correct": true,
+				"status is correct": false
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"quarter is correct": {
+					"pass": 0,
+					"fail": 1
+				},
+				"year is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"maxNumberOfParticipants is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"status is correct": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"62"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"quarter is correct": false,
+					"year is correct": true,
+					"maxNumberOfParticipants is correct": true,
+					"status is correct": false
+				}
+			],
+			"time": "62",
+			"totalRequestTime": "62",
+			"iterationResults": {}
+		},
+		{
+			"name": "Detail of a course for a given program",
+			"id": "b43ec09d-19c9-408f-bd41-4e751d757697",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/2/course/1",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"quarter is correct": false,
+				"year is correct": true,
+				"maxNumberOfParticipants is correct": true,
+				"status is correct": false
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"quarter is correct": {
+					"pass": 0,
+					"fail": 1
+				},
+				"year is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"maxNumberOfParticipants is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"status is correct": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"34"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"quarter is correct": false,
+					"year is correct": true,
+					"maxNumberOfParticipants is correct": true,
+					"status is correct": false
+				}
+			],
+			"time": "34",
+			"totalRequestTime": "34",
+			"iterationResults": {}
+		},
+		{
+			"name": "Update an existing course. Returns the updated course",
+			"id": "543622e9-0b5f-4ede-aadb-60243ab6f6a1",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/2/course/1",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"quarter is correct": false,
+				"year is correct": true,
+				"maxNumberOfParticipants is correct": true,
+				"status is correct": false
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"quarter is correct": {
+					"pass": 0,
+					"fail": 1
+				},
+				"year is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"maxNumberOfParticipants is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"status is correct": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"31"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"quarter is correct": false,
+					"year is correct": true,
+					"maxNumberOfParticipants is correct": true,
+					"status is correct": false
+				}
+			],
+			"time": "31",
+			"totalRequestTime": "31",
+			"iterationResults": {}
+		},
+		{
+			"name": "delete a course for a given program",
+			"id": "f4e470c2-56c9-47c5-bffe-670208237545",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/2/course/1",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error",
+				"detail": {
+					"name": "Internal Server Error",
+					"detail": "A generic error message, given when no more specific message is suitable."
+				}
+			},
+			"tests": {
+				"Check status code": false,
+				"array is empty": false
+			},
+			"testPassFailCounts": {
+				"Check status code": {
+					"pass": 0,
+					"fail": 1
+				},
+				"array is empty": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"42"
+			],
+			"allTests": [
+				{
+					"Check status code": false,
+					"array is empty": false
+				}
+			],
+			"time": "42",
+			"totalRequestTime": "42",
+			"iterationResults": {}
+		},
+		{
+			"name": "Create new session(s) for a given course and program",
+			"id": "0a518879-2909-4554-b9fd-194550f9dde4",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/2/course/2/session",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"startDateTime is correct": true,
+				"endDateTime is correct": true,
+				"price is correct": false,
+				"room is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"startDateTime is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"endDateTime is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"price is correct": {
+					"pass": 0,
+					"fail": 1
+				},
+				"room is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"42"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"startDateTime is correct": true,
+					"endDateTime is correct": true,
+					"price is correct": false,
+					"room is correct": true
+				}
+			],
+			"time": "42",
+			"totalRequestTime": "42",
+			"iterationResults": {}
+		},
+		{
+			"name": "List all sessions for a given course and program",
+			"id": "d627b8b3-b500-4d49-92b6-e6bdbb2a470a",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/2/course/2/session",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"startDateTime is correct": true,
+				"endDateTime is correct": true,
+				"price is correct": false,
+				"room is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"startDateTime is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"endDateTime is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"price is correct": {
+					"pass": 0,
+					"fail": 1
+				},
+				"room is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"47"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"startDateTime is correct": true,
+					"endDateTime is correct": true,
+					"price is correct": false,
+					"room is correct": true
+				}
+			],
+			"time": "47",
+			"totalRequestTime": "47",
+			"iterationResults": {}
+		},
+		{
+			"name": "Details of a session for a given course and program",
+			"id": "a5f7de28-668a-484a-97e4-7bd75620a720",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/2/course/2/session/1",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"startDateTime is correct": true,
+				"endDateTime is correct": true,
+				"price is correct": true,
+				"room is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"startDateTime is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"endDateTime is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"price is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"room is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"33"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"startDateTime is correct": true,
+					"endDateTime is correct": true,
+					"price is correct": true,
+					"room is correct": true
+				}
+			],
+			"time": "33",
+			"totalRequestTime": "33",
+			"iterationResults": {}
+		},
+		{
+			"name": "Modify an existing session. Returns the updated session",
+			"id": "ad801b6e-553b-4f3c-9a08-de011ff8d5f9",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/2/course/2/session/1",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"startDateTime is correct": true,
+				"endDateTime is correct": false,
+				"price is correct": true,
+				"room is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"startDateTime is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"endDateTime is correct": {
+					"pass": 0,
+					"fail": 1
+				},
+				"price is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"room is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"45"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"startDateTime is correct": true,
+					"endDateTime is correct": false,
+					"price is correct": true,
+					"room is correct": true
+				}
+			],
+			"time": "45",
+			"totalRequestTime": "45",
+			"iterationResults": {}
+		},
+		{
+			"name": "delete a session by id for a given course and program",
+			"id": "ab206ca4-fb98-40dc-8a03-e063ae336f5c",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/2/course/2/session/1",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error",
+				"detail": {
+					"name": "Internal Server Error",
+					"detail": "A generic error message, given when no more specific message is suitable."
+				}
+			},
+			"tests": {
+				"Check status code": false,
+				"array is empty": false
+			},
+			"testPassFailCounts": {
+				"Check status code": {
+					"pass": 0,
+					"fail": 1
+				},
+				"array is empty": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"32"
+			],
+			"allTests": [
+				{
+					"Check status code": false,
+					"array is empty": false
+				}
+			],
+			"time": "32",
+			"totalRequestTime": "32",
+			"iterationResults": {}
+		},
+		{
+			"name": "Add a new Participant",
+			"id": "d90c4c8b-0ae4-45e3-b7c8-1be4cf7a0bee",
+			"url": "http://localhost:8080/koulutus/koulutus/api/participant",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"firstName is correct": true,
+				"lastName is correct": true,
+				"birthdate is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"firstName is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"lastName is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"birthdate is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"17"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"firstName is correct": true,
+					"lastName is correct": true,
+					"birthdate is correct": true
+				}
+			],
+			"time": "17",
+			"totalRequestTime": "17",
+			"iterationResults": {}
+		},
+		{
+			"name": "List all participants",
+			"id": "8cba88ea-cb06-4b97-96e9-fe59868652b7",
+			"url": "http://localhost:8080/koulutus/koulutus/api/participant",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"firstName is correct": true,
+				"lastName is correct": true,
+				"birthdate is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"firstName is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"lastName is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"birthdate is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"11"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"firstName is correct": true,
+					"lastName is correct": true,
+					"birthdate is correct": true
+				}
+			],
+			"time": "11",
+			"totalRequestTime": "11",
+			"iterationResults": {}
+		},
+		{
+			"name": "Detail of a participant",
+			"id": "a47f09bd-fdd7-4284-9b79-71348db79a1b",
+			"url": "http://localhost:8080/koulutus/koulutus/api/participant/1",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"firstName is correct": true,
+				"lastName is correct": true,
+				"birthdate is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"firstName is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"lastName is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"birthdate is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"26"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"firstName is correct": true,
+					"lastName is correct": true,
+					"birthdate is correct": true
+				}
+			],
+			"time": "26",
+			"totalRequestTime": "26",
+			"iterationResults": {}
+		},
+		{
+			"name": "Modify an existing participant",
+			"id": "3d611775-02f3-46a3-a0c9-5dc899f61aee",
+			"url": "http://localhost:8080/koulutus/koulutus/api/participant/1",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"firstName is correct": true,
+				"lastName is correct": true,
+				"birthdate is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"firstName is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"lastName is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"birthdate is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"15"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"firstName is correct": true,
+					"lastName is correct": true,
+					"birthdate is correct": true
+				}
+			],
+			"time": "15",
+			"totalRequestTime": "15",
+			"iterationResults": {}
+		},
+		{
+			"name": "Register a participant to a course",
+			"id": "291bb04e-896d-4a46-8b1d-202ed3c86d69",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/2/course/2/participant/1",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content",
+				"detail": {
+					"name": "No Content",
+					"detail": "The server successfully processed the request, but is not returning any content."
+				}
+			},
+			"tests": {
+				"Check status code": true,
+				"participant is registered in the course": false
+			},
+			"testPassFailCounts": {
+				"Check status code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"participant is registered in the course": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"68"
+			],
+			"allTests": [
+				{
+					"Check status code": true,
+					"participant is registered in the course": false
+				}
+			],
+			"time": "68",
+			"totalRequestTime": "68",
+			"iterationResults": {}
+		},
+		{
+			"name": "List all courses in which a participant is registered",
+			"id": "80cfc999-3cc0-40b3-bbdd-9704b4a76c58",
+			"url": "http://localhost:8080/koulutus/koulutus/api/participant/1/summary",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error",
+				"detail": {
+					"name": "Internal Server Error",
+					"detail": "A generic error message, given when no more specific message is suitable."
+				}
+			},
+			"tests": {
+				"Status code is 200": false,
+				"the course is in the list": false
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 0,
+					"fail": 1
+				},
+				"the course is in the list": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"24"
+			],
+			"allTests": [
+				{
+					"Status code is 200": false,
+					"the course is in the list": false
+				}
+			],
+			"time": "24",
+			"totalRequestTime": "24",
+			"iterationResults": {}
+		},
+		{
+			"name": "get participants list for a given course",
+			"id": "a3e8ddb5-3657-4c14-8003-d8be6a37fd8c",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/2/course/2/participant",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"Status code is 200": true,
+				"the participant is in the list": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"the participant is in the list": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"29"
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"the participant is in the list": true
+				}
+			],
+			"time": "29",
+			"totalRequestTime": "29",
+			"iterationResults": {}
+		},
+		{
+			"name": "Delete an existing participant by id",
+			"id": "3a39cab6-fef2-468b-9714-4869ad8f245a",
+			"url": "http://localhost:8080/koulutus/koulutus/api/participant/3",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error",
+				"detail": {
+					"name": "Internal Server Error",
+					"detail": "A generic error message, given when no more specific message is suitable."
+				}
+			},
+			"tests": {
+				"Check status code": false,
+				"the participant is removed from the general list": false,
+				"the participant is removed from the course in which he is registered": false
+			},
+			"testPassFailCounts": {
+				"Check status code": {
+					"pass": 0,
+					"fail": 1
+				},
+				"the participant is removed from the general list": {
+					"pass": 0,
+					"fail": 1
+				},
+				"the participant is removed from the course in which he is registered": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"22"
+			],
+			"allTests": [
+				{
+					"Check status code": false,
+					"the participant is removed from the general list": false,
+					"the participant is removed from the course in which he is registered": false
+				}
+			],
+			"time": "22",
+			"totalRequestTime": "22",
+			"iterationResults": {}
+		}
+	],
+	"totalPass": 70,
+	"totalFail": 21,
+	"totalTime": 2135,
+	"lifecycle": "done",
+	"requests": [
+		{
+			"name": "Create a new training program",
+			"id": "13f4fd7f-f0fc-40de-88eb-7489f1bc5e8f",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program",
+			"time": "2019-05-07T12:51:56.417Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"name is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"richDescription is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"field is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"price is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "List all training programs",
+			"id": "9f5cffea-0eda-404d-9e50-f98a28c94c76",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program",
+			"time": "2019-05-07T12:51:56.417Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"name is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"richDescription is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"field is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"price is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "View the details of a training program",
+			"id": "50ec05e1-89b0-47dc-98f0-b70287cea215",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/1",
+			"time": "2019-05-07T12:51:56.417Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"name is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"richDescription is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"field is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"price is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "update an existing training program. Returns the updated training program.",
+			"id": "22e2ba24-e2b0-4b3f-bb1d-91c62b38e399",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/1",
+			"time": "2019-05-07T12:51:56.417Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"name is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"richDescription is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"field is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"price is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Delete an existing training program",
+			"id": "9b378f7b-9ddb-42de-a89f-749f757a4bf4",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/1",
+			"time": "2019-05-07T12:51:56.417Z",
+			"responseCode": {
+				"code": 204,
+				"name": "No Content",
+				"detail": {
+					"name": "No Content",
+					"detail": "The server successfully processed the request, but is not returning any content."
+				}
+			},
+			"testPassFailCounts": {
+				"Check status code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"array is empty": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Add a new course to an existing program",
+			"id": "4f7455cd-2bee-4eb3-b6ba-806cca1e0918",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/2/course",
+			"time": "2019-05-07T12:51:56.417Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"quarter is correct": {
+					"pass": 0,
+					"fail": 1
+				},
+				"year is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"maxNumberOfParticipants is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"status is correct": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "Get all course for a given program",
+			"id": "8d40e3de-2699-48c6-b188-9d6699b42732",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/2/course",
+			"time": "2019-05-07T12:51:56.417Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"quarter is correct": {
+					"pass": 0,
+					"fail": 1
+				},
+				"year is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"maxNumberOfParticipants is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"status is correct": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "Detail of a course for a given program",
+			"id": "b43ec09d-19c9-408f-bd41-4e751d757697",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/2/course/1",
+			"time": "2019-05-07T12:51:56.417Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"quarter is correct": {
+					"pass": 0,
+					"fail": 1
+				},
+				"year is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"maxNumberOfParticipants is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"status is correct": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "Update an existing course. Returns the updated course",
+			"id": "543622e9-0b5f-4ede-aadb-60243ab6f6a1",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/2/course/1",
+			"time": "2019-05-07T12:51:56.417Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"quarter is correct": {
+					"pass": 0,
+					"fail": 1
+				},
+				"year is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"maxNumberOfParticipants is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"status is correct": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "delete a course for a given program",
+			"id": "f4e470c2-56c9-47c5-bffe-670208237545",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/2/course/1",
+			"time": "2019-05-07T12:51:56.417Z",
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error",
+				"detail": {
+					"name": "Internal Server Error",
+					"detail": "A generic error message, given when no more specific message is suitable."
+				}
+			},
+			"testPassFailCounts": {
+				"Check status code": {
+					"pass": 0,
+					"fail": 1
+				},
+				"array is empty": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "Create new session(s) for a given course and program",
+			"id": "0a518879-2909-4554-b9fd-194550f9dde4",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/2/course/2/session",
+			"time": "2019-05-07T12:51:56.417Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"startDateTime is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"endDateTime is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"price is correct": {
+					"pass": 0,
+					"fail": 1
+				},
+				"room is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "List all sessions for a given course and program",
+			"id": "d627b8b3-b500-4d49-92b6-e6bdbb2a470a",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/2/course/2/session",
+			"time": "2019-05-07T12:51:56.417Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"startDateTime is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"endDateTime is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"price is correct": {
+					"pass": 0,
+					"fail": 1
+				},
+				"room is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Details of a session for a given course and program",
+			"id": "a5f7de28-668a-484a-97e4-7bd75620a720",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/2/course/2/session/1",
+			"time": "2019-05-07T12:51:56.417Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"startDateTime is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"endDateTime is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"price is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"room is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Modify an existing session. Returns the updated session",
+			"id": "ad801b6e-553b-4f3c-9a08-de011ff8d5f9",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/2/course/2/session/1",
+			"time": "2019-05-07T12:51:56.417Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"startDateTime is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"endDateTime is correct": {
+					"pass": 0,
+					"fail": 1
+				},
+				"price is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"room is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "delete a session by id for a given course and program",
+			"id": "ab206ca4-fb98-40dc-8a03-e063ae336f5c",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/2/course/2/session/1",
+			"time": "2019-05-07T12:51:56.417Z",
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error",
+				"detail": {
+					"name": "Internal Server Error",
+					"detail": "A generic error message, given when no more specific message is suitable."
+				}
+			},
+			"testPassFailCounts": {
+				"Check status code": {
+					"pass": 0,
+					"fail": 1
+				},
+				"array is empty": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "Add a new Participant",
+			"id": "d90c4c8b-0ae4-45e3-b7c8-1be4cf7a0bee",
+			"url": "http://localhost:8080/koulutus/koulutus/api/participant",
+			"time": "2019-05-07T12:51:56.417Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"firstName is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"lastName is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"birthdate is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "List all participants",
+			"id": "8cba88ea-cb06-4b97-96e9-fe59868652b7",
+			"url": "http://localhost:8080/koulutus/koulutus/api/participant",
+			"time": "2019-05-07T12:51:56.417Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"firstName is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"lastName is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"birthdate is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Detail of a participant",
+			"id": "a47f09bd-fdd7-4284-9b79-71348db79a1b",
+			"url": "http://localhost:8080/koulutus/koulutus/api/participant/1",
+			"time": "2019-05-07T12:51:56.417Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"firstName is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"lastName is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"birthdate is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Modify an existing participant",
+			"id": "3d611775-02f3-46a3-a0c9-5dc899f61aee",
+			"url": "http://localhost:8080/koulutus/koulutus/api/participant/1",
+			"time": "2019-05-07T12:51:56.417Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"firstName is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"lastName is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"birthdate is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Register a participant to a course",
+			"id": "291bb04e-896d-4a46-8b1d-202ed3c86d69",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/2/course/2/participant/1",
+			"time": "2019-05-07T12:51:56.417Z",
+			"responseCode": {
+				"code": 204,
+				"name": "No Content",
+				"detail": {
+					"name": "No Content",
+					"detail": "The server successfully processed the request, but is not returning any content."
+				}
+			},
+			"testPassFailCounts": {
+				"Check status code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"participant is registered in the course": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "List all courses in which a participant is registered",
+			"id": "80cfc999-3cc0-40b3-bbdd-9704b4a76c58",
+			"url": "http://localhost:8080/koulutus/koulutus/api/participant/1/summary",
+			"time": "2019-05-07T12:51:56.417Z",
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error",
+				"detail": {
+					"name": "Internal Server Error",
+					"detail": "A generic error message, given when no more specific message is suitable."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 0,
+					"fail": 1
+				},
+				"the course is in the list": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "get participants list for a given course",
+			"id": "a3e8ddb5-3657-4c14-8003-d8be6a37fd8c",
+			"url": "http://localhost:8080/koulutus/koulutus/api/program/2/course/2/participant",
+			"time": "2019-05-07T12:51:56.417Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"the participant is in the list": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Delete an existing participant by id",
+			"id": "3a39cab6-fef2-468b-9714-4869ad8f245a",
+			"url": "http://localhost:8080/koulutus/koulutus/api/participant/3",
+			"time": "2019-05-07T12:51:56.417Z",
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error",
+				"detail": {
+					"name": "Internal Server Error",
+					"detail": "A generic error message, given when no more specific message is suitable."
+				}
+			},
+			"testPassFailCounts": {
+				"Check status code": {
+					"pass": 0,
+					"fail": 1
+				},
+				"the participant is removed from the general list": {
+					"pass": 0,
+					"fail": 1
+				},
+				"the participant is removed from the course in which he is registered": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		}
+	],
+	"synced": false
+}
